@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
-import MuiThemeProvider from '../node_modules/material-ui/styles/MuiThemeProvider';
-import Color from './Color';
 import Header from './Header';
+import MuiThemeProvider from '../node_modules/material-ui/styles/MuiThemeProvider';
+import RaisedButton from '../node_modules/material-ui/RaisedButton';
+import FontIcon from '../node_modules/material-ui/FontIcon';
 
 class App extends Component {
-  state = {
-    color: 'red',
-  }
-  
-  changeColor () {
-    this.state.color === 'red' ? this.setState({color: 'green'}) : this.setState({color: 'red'});
-  }
 
   render() {
     return (
       <div className="App">
         <MuiThemeProvider>
-          <Header />
+          <Header/>
         </MuiThemeProvider>
-        <button className={this.state.color === 'red' ? 'buttonRed' : 'buttonGreen'} onClick={() => this.changeColor()}>Cliquez moi</button>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Color color={this.state.color} />
+        <MuiThemeProvider>
+          <RaisedButton
+            label="Nouveau Match"
+            icon={<FontIcon className="muidocs-icon-people" />}
+          />
+        </MuiThemeProvider>
       </div>
     );
   }
@@ -31,4 +26,3 @@ class App extends Component {
 
 
 export default App;
-
