@@ -1,22 +1,23 @@
 import React, { Component } from "react";
 import "./App.css";
 import Header from "./Header";
-import MuiThemeProvider from "../node_modules/material-ui/styles/MuiThemeProvider";
-import RaisedButton from "../node_modules/material-ui/RaisedButton";
-import FontIcon from "../node_modules/material-ui/FontIcon";
+import { BrowserRouter, Route } from "react-router-dom";
+import Players from "./Players";
+import Home from "./Home";
+import { MuiThemeProvider } from "material-ui/styles";
 
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider>
-        <div className="App">
-          <Header />
-          <RaisedButton
-            label="Nouveau Match"
-            icon={<FontIcon className="muidocs-icon-people" />}
-          />
-        </div>
-      </MuiThemeProvider>
+      <BrowserRouter>
+        <MuiThemeProvider>
+          <div className="App">
+            <Header />
+            <Route exact path="/" component={Home} />
+            <Route path="/Players" component={Players} />
+          </div>
+        </MuiThemeProvider>
+      </BrowserRouter>
     );
   }
 }

@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
-import AppBar from "../node_modules/material-ui/AppBar";
-import Drawer from "../node_modules/material-ui/Drawer";
-import MenuItem from "../node_modules/material-ui/MenuItem";
+import AppBar from "material-ui/AppBar";
+import Drawer from "material-ui/Drawer";
+import MenuItem from "material-ui/MenuItem";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   state = {
@@ -24,8 +25,12 @@ class Header extends Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <MenuItem onClick={() => this.handleClose()}>Accueil</MenuItem>
-          <MenuItem onClick={() => this.handleClose()}>Les joueurs</MenuItem>
+          <Link to="/">
+            <MenuItem onClick={() => this.handleClose()}>Accueil</MenuItem>
+          </Link>
+          <Link to="/Players">
+            <MenuItem onClick={() => this.handleClose()}>Les joueurs</MenuItem>
+          </Link>
           <MenuItem onClick={() => this.handleClose()}>Résultats</MenuItem>
           <MenuItem onClick={() => this.handleClose()}>Classements</MenuItem>
           <MenuItem onClick={() => this.handleClose()}>
