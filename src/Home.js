@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FontIcon, RaisedButton } from "material-ui";
+import PeopleIcon from "material-ui-icons/People";
 
 class Home extends Component {
   render() {
@@ -7,7 +8,7 @@ class Home extends Component {
       <div>
         <RaisedButton
           label="Nouveau Match"
-          icon={<FontIcon className="muidocs-icon-people" />}
+          icon={<PeopleIcon className="muidocs-icon-people" />}
         />
       </div>
     );
