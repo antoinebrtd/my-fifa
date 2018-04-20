@@ -1,0 +1,7 @@
+.home {
+    background-image: url('images/backgrounds/home_background.jpg');
+    background-attachment: fixed;
+    background-position: bottom;
+    background-size: cover;
+    height: 80vh;
+}

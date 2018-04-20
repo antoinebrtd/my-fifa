@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Home.css";
 import { RaisedButton } from "material-ui";
 import PeopleIcon from "material-ui-icons/People";
 import { GridList, Subheader, GridTile } from "material-ui";
@@ -68,7 +69,7 @@ class Home extends Component {
     ];
 
     return (
-      <div>
+      <div className="home">
         <RaisedButton
           label="Nouveau Match"
           icon={<PeopleIcon className="muidocs-icon-people" />}

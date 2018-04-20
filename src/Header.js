@@ -3,6 +3,7 @@ import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import { Link } from "react-router-dom";
+import ronaldo from "./images/backgrounds/ronaldo.jpg";
 
 class Header extends Component {
   state = {
@@ -18,9 +19,19 @@ class Header extends Component {
   }
 
   render() {
+    const styles = {
+      drawer: {
+          backgroundImage: `url(${ronaldo})`,
+          backgroundPosition: 'bottom',
+          backgroundSize: 'cover',
+          backgroundAttachment: 'fixed',
+      },
+    };
+
     return (
       <Fragment>
         <Drawer
+          style={styles.drawer}
           docked={false}
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
