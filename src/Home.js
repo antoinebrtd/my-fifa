@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FontIcon, RaisedButton } from "material-ui";
+import RaisedButton from "material-ui/RaisedButton";
 import PeopleIcon from "material-ui-icons/People";
 
 class Home extends Component {
