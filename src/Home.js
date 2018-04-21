@@ -36,6 +36,7 @@ class Home extends Component {
       },
       subheader: {
         color: "white",
+        fontFamily: 'fifa',
         fontSize: "1.2em",
         fontWeight: "bold",
         textShadow: "1px 1px 2px black"
@@ -158,7 +159,7 @@ class Home extends Component {
             style={styles.gridList}
             cols={1}
           >
-            <Subheader style={styles.subheader}>Résultats récents</Subheader>
+            <Subheader style={styles.subheader}>Resultats  recents</Subheader>
             {matchesData.map(match => (
               <GridTile
                 style={styles.gridTile}

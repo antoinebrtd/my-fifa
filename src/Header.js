@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
+import './Header.css';
 import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import { Link } from "react-router-dom";
 import ronaldo from "./images/backgrounds/ronaldo.jpg";
-import appbar from "./images/backgrounds/appbar_background.jpg"
+import appbar from "./images/backgrounds/appbar_background.jpg";
 
 class Header extends Component {
   state = {
@@ -28,9 +29,10 @@ class Header extends Component {
           backgroundAttachment: 'fixed',
       },
       appBar: {
-        //backgroundColor: "rgb(0, 51, 102)"
         backgroundImage: `url(${appbar})`,
-        backgroundPosition: 'bottom'
+        backgroundPosition: 'bottom',
+        fontFamily: 'fifa',
+        fontSize: '2em'
       }
     };
 
@@ -56,7 +58,7 @@ class Header extends Component {
         </Drawer>
         <AppBar
           style={styles.appBar}
-          title="Résultats FiFa Chambre 4B309"
+          title="Resultats  FiFa  Chambre  4B309"
           onLeftIconButtonClick={() => this.displayMenu()}
         />
       </Fragment>
