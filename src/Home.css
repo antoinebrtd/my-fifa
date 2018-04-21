@@ -3,5 +3,10 @@
     background-attachment: fixed;
     background-position: bottom;
     background-size: cover;
-    height: 80vh;
+    height: 85vh;
+}
+
+.container {
+    height: 85vh;
+    overflow-y: scroll;
 }

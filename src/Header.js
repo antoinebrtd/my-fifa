@@ -4,6 +4,7 @@ import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import { Link } from "react-router-dom";
 import ronaldo from "./images/backgrounds/ronaldo.jpg";
+import appbar from "./images/backgrounds/appbar_background.jpg"
 
 class Header extends Component {
   state = {
@@ -26,6 +27,11 @@ class Header extends Component {
           backgroundSize: 'cover',
           backgroundAttachment: 'fixed',
       },
+      appBar: {
+        //backgroundColor: "rgb(0, 51, 102)"
+        backgroundImage: `url(${appbar})`,
+        backgroundPosition: 'bottom'
+      }
     };
 
     return (
@@ -49,6 +55,7 @@ class Header extends Component {
           </MenuItem>
         </Drawer>
         <AppBar
+          style={styles.appBar}
           title="Résultats FiFa Chambre 4B309"
           onLeftIconButtonClick={() => this.displayMenu()}
         />
