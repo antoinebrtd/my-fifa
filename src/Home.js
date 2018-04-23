@@ -26,27 +26,44 @@ class Home extends Component {
         overflowY: "auto",
         position: "fixed",
         right: "0",
+        //top: "8vh",
         backgroundColor: "rgba(192,192,192,0.3)"
       },
       button: {
-        backgroundColor: "#fcd21c",
         position: "fixed",
         top: "45vh",
         right: "45vw"
       },
       subheader: {
-        color: "white",
+        color: "#fcd21c",
         fontFamily: 'fifa',
         fontSize: "1.2em",
         fontWeight: "bold",
         textShadow: "1px 1px 2px black"
       },
-      table: {
+      gridTile: {
+        backgroundColor: "rgba(255,255,255,0.4)"
+      },
+      tableContainer: {
         width: "12vw",
         height: "85vh",
         position: "fixed",
         left: "0",
-        backgroundColor: "rgba(192,192,192,0.3)"
+        backgroundColor: "rgba(192,192,192,0.3)",
+        overflowY: "auto",
+        //display: "flex",
+        //flexWrap: "wrap",
+        //flexDirection: "column"
+      },
+      table: {
+        backgroundColor: "rgba(0, 51, 102, 0.4)"
+      },
+      tableRow: {
+        width: "12vw",
+        height: "1vh"
+      },
+      column: {
+        padding: "0"
       }
     };
     const matchesData = [
@@ -115,7 +132,7 @@ class Home extends Component {
     const rankingsData = [
         {
           id: "1",
-          player: "Beber",
+          name: "Beber",
           points: 15,
           played: 7,
           wins: 5,
@@ -127,19 +144,19 @@ class Home extends Component {
         },
         {
           id: "2",
-          player: "Tutur",
+          name: "Tutur",
           points: 17,
           played: 7,
           wins: 5,
           draws: 2,
           losses: 0,
           goaldiff: +11,
-          for: 15,
-          against: 4,
+          for: 16,
+          against: 5,
         },
         {
           id: "3",
-          player: "Borcky",
+          name: "Borcky",
           points: 10,
           played: 7,
           wins: 3,
@@ -153,11 +170,38 @@ class Home extends Component {
 
     return (
       <div className="home">
+        <div className="container" style={styles.tableContainer}>
+          <h2>Classements</h2>
+          <Table 
+            style={styles.table}
+            headerStyle={styles.tableRow}
+          >
+            <TableHeader 
+              adjustForCheckbox={false}
+              displaySelectAll={false}
+            >
+              <TableRow style={styles.tableRow}>
+                <TableHeaderColumn style={styles.column}>Pos.</TableHeaderColumn>
+                <TableHeaderColumn style={styles.column}>Nom</TableHeaderColumn>
+                <TableHeaderColumn style={styles.column}>Pts</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={false}>
+              {rankingsData.map(player => (
+                <TableRow style={styles.tableRow}>
+                  <TableRowColumn style={styles.column}>{rankingsData.indexOf(player) + 1}</TableRowColumn>
+                  <TableRowColumn style={styles.column}>{player.name}</TableRowColumn>
+                  <TableRowColumn style={styles.column}>{player.points}</TableRowColumn>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
         <div className="container" style={styles.root}>
           <GridList 
             cellHeight={200} 
-            style={styles.gridList}
             cols={1}
+            style={styles.gridList}
           >
             <Subheader style={styles.subheader}>Resultats  recents</Subheader>
             {matchesData.map(match => (
@@ -175,6 +219,7 @@ class Home extends Component {
         <RaisedButton
           style={styles.button}
           label="Nouveau Match"
+          backgroundColor="#fcd21c"
           icon={<PeopleIcon className="muidocs-icon-people" />}
         />
       </div>

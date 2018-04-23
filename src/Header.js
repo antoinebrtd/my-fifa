@@ -23,16 +23,19 @@ class Header extends Component {
   render() {
     const styles = {
       drawer: {
-          backgroundImage: `url(${ronaldo})`,
-          backgroundPosition: 'bottom',
-          backgroundSize: 'cover',
-          backgroundAttachment: 'fixed',
+        backgroundImage: `url(${ronaldo})`,
+        backgroundPosition: 'bottom',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
       },
       appBar: {
         backgroundImage: `url(${appbar})`,
         backgroundPosition: 'bottom',
+        //height: "8vh"
+      },
+      title: {
         fontFamily: 'fifa',
-        fontSize: '2em'
+        fontSize: '2.7em'
       }
     };
 
@@ -52,13 +55,12 @@ class Header extends Component {
           </Link>
           <MenuItem onClick={() => this.handleClose()}>Résultats</MenuItem>
           <MenuItem onClick={() => this.handleClose()}>Classements</MenuItem>
-          <MenuItem onClick={() => this.handleClose()}>
-            Trophées individuels
-          </MenuItem>
+          <MenuItem onClick={() => this.handleClose()}>Trophées individuels</MenuItem>
         </Drawer>
         <AppBar
           style={styles.appBar}
-          title="Resultats  FiFa  Chambre  4B309"
+          titleStyle={styles.title}
+          title="Resultats FiFa 18 Chambre 4B309"
           onLeftIconButtonClick={() => this.displayMenu()}
         />
       </Fragment>
