@@ -4,6 +4,9 @@ import Header from "./Header";
 import { BrowserRouter, Route } from "react-router-dom";
 import Players from "./Players";
 import Home from "./Home";
+import Results from "./Results";
+import Rankings from "./Rankings";
+import Match from "./Match";
 import { MuiThemeProvider } from "material-ui/styles";
 
 class App extends Component {
@@ -15,6 +18,9 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Home} />
             <Route path="/Players" component={Players} />
+            <Route path="/Results" component={Results} />
+            <Route path="/Rankings" component={Rankings} />
+            <Route path="/Match" component={Match} />
           </div>
         </MuiThemeProvider>
       </BrowserRouter>

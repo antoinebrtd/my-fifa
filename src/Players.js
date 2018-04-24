@@ -3,9 +3,7 @@ import React, { Component } from "react";
 class Players extends Component {
   render() {
     return (
-      <div>
-        <p>description</p>
-      </div>
+      <h1>Description des joueurs</h1>
     );
   }
 }

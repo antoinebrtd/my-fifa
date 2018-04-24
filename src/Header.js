@@ -53,8 +53,12 @@ class Header extends Component {
           <Link to="/Players">
             <MenuItem onClick={() => this.handleClose()}>Les joueurs</MenuItem>
           </Link>
-          <MenuItem onClick={() => this.handleClose()}>Résultats</MenuItem>
-          <MenuItem onClick={() => this.handleClose()}>Classements</MenuItem>
+          <Link to="/Results">
+            <MenuItem onClick={() => this.handleClose()}>Résultats</MenuItem>
+          </Link>
+          <Link to="/Rankings">
+            <MenuItem onClick={() => this.handleClose()}>Classements</MenuItem>
+          </Link>
           <MenuItem onClick={() => this.handleClose()}>Trophées individuels</MenuItem>
         </Drawer>
         <AppBar

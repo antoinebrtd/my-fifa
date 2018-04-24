@@ -4,6 +4,7 @@ import { RaisedButton } from "material-ui";
 import PeopleIcon from "material-ui-icons/People";
 import { GridList, Subheader, GridTile } from "material-ui";
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui';
+import { Link } from "react-router-dom";
 
 import arsn from "./images/resultats_recents/arsn.jpg";
 import fcb from "./images/resultats_recents/fcb.jpg";
@@ -15,24 +16,23 @@ import rma from "./images/resultats_recents/rma.jpg";
 class Home extends Component {
   render() {
     const styles = {
-      root: {
-        display: "flex",
-        flexwrap: "wrap",
-        justifyContent: "space-around"
-      },
-      gridList: {
-        width: "12vw",
-        height: "85vh",
-        overflowY: "auto",
-        position: "fixed",
-        right: "0",
-        //top: "8vh",
-        backgroundColor: "rgba(192,192,192,0.3)"
-      },
       button: {
         position: "fixed",
         top: "45vh",
         right: "45vw"
+      },
+      root: {
+        display: "flex",
+        flexwrap: "wrap",
+        justifyContent: "space-around",
+      },
+      gridList: {
+        width: "12vw",
+        height: "85vh",
+        position: "fixed",
+        overflowY: "auto",
+        right: "0",
+        backgroundColor: "rgba(192,192,192,0.3)"
       },
       subheader: {
         color: "#fcd21c",
@@ -51,16 +51,20 @@ class Home extends Component {
         left: "0",
         backgroundColor: "rgba(192,192,192,0.3)",
         overflowY: "auto",
-        //display: "flex",
-        //flexWrap: "wrap",
-        //flexDirection: "column"
+      },      
+      subheaderbis: {
+        color: "#fcd21c",
+        fontFamily: 'fifa',
+        fontSize: "1.2em",
+        fontWeight: "bold",
+        textShadow: "1px 1px 2px black",
+        margin: "2vh"
       },
       table: {
-        backgroundColor: "rgba(0, 51, 102, 0.4)"
+        backgroundColor: "rgba(0, 51, 102, 0.6)"
       },
       tableRow: {
-        width: "12vw",
-        height: "1vh"
+        color: "white"
       },
       column: {
         padding: "0"
@@ -171,31 +175,86 @@ class Home extends Component {
     return (
       <div className="home">
         <div className="container" style={styles.tableContainer}>
-          <h2>Classements</h2>
-          <Table 
-            style={styles.table}
-            headerStyle={styles.tableRow}
-          >
-            <TableHeader 
-              adjustForCheckbox={false}
-              displaySelectAll={false}
+          <h3 style={styles.subheaderbis}>Classements</h3>
+          <div id="general" style={{ marginBottom: "1vh" }}>
+            <Table 
+              style={styles.table}
             >
-              <TableRow style={styles.tableRow}>
-                <TableHeaderColumn style={styles.column}>Pos.</TableHeaderColumn>
-                <TableHeaderColumn style={styles.column}>Nom</TableHeaderColumn>
-                <TableHeaderColumn style={styles.column}>Pts</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody displayRowCheckbox={false}>
-              {rankingsData.map(player => (
-                <TableRow style={styles.tableRow}>
-                  <TableRowColumn style={styles.column}>{rankingsData.indexOf(player) + 1}</TableRowColumn>
-                  <TableRowColumn style={styles.column}>{player.name}</TableRowColumn>
-                  <TableRowColumn style={styles.column}>{player.points}</TableRowColumn>
+              <TableHeader 
+                adjustForCheckbox={false}
+                displaySelectAll={false}
+              >
+                <h4 style={{ color: "white", marginBottom: "0", marginLeft: "1vw" }}>Général</h4>
+                <TableRow>
+                  <TableHeaderColumn>Pos.</TableHeaderColumn>
+                  <TableHeaderColumn style={styles.column}>Nom</TableHeaderColumn>
+                  <TableHeaderColumn>Pts</TableHeaderColumn>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+                {rankingsData.map(player => (
+                  <TableRow style={styles.tableRow}>
+                    <TableRowColumn>{rankingsData.indexOf(player) + 1}</TableRowColumn>
+                    <TableRowColumn style={styles.column}>{player.name}</TableRowColumn>
+                    <TableRowColumn>{player.points}</TableRowColumn>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+          <div id="difference" style={{ marginBottom: "1vh" }}>
+            <Table 
+              style={styles.table}
+            >
+              <TableHeader 
+                adjustForCheckbox={false}
+                displaySelectAll={false}
+              >
+                <h4 style={{ color: "white", marginBottom: "0", marginLeft: "1vw" }}>Différence</h4>
+                <TableRow>
+                  <TableHeaderColumn>Pos.</TableHeaderColumn>
+                  <TableHeaderColumn style={styles.column}>Nom</TableHeaderColumn>
+                  <TableHeaderColumn>Diff</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+                {rankingsData.map(player => (
+                  <TableRow style={styles.tableRow}>
+                    <TableRowColumn>{rankingsData.indexOf(player) + 1}</TableRowColumn>
+                    <TableRowColumn style={styles.column}>{player.name}</TableRowColumn>
+                    <TableRowColumn>{player.goaldiff}</TableRowColumn>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+          <div id="attaque" style={{ marginBottom: "1vh" }}>
+            <Table 
+              style={styles.table}
+            >
+              <TableHeader 
+                adjustForCheckbox={false}
+                displaySelectAll={false}
+              >
+                <h4 style={{ color: "white", marginBottom: "0", marginLeft: "1vw" }}>Attaque</h4>
+                <TableRow>
+                  <TableHeaderColumn>Pos.</TableHeaderColumn>
+                  <TableHeaderColumn style={styles.column}>Nom</TableHeaderColumn>
+                  <TableHeaderColumn>Pour</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody displayRowCheckbox={false}>
+                {rankingsData.map(player => (
+                  <TableRow style={styles.tableRow}>
+                    <TableRowColumn>{rankingsData.indexOf(player) + 1}</TableRowColumn>
+                    <TableRowColumn style={styles.column}>{player.name}</TableRowColumn>
+                    <TableRowColumn>{player.for}</TableRowColumn>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+          <Link to="/Rankings" style={{ color: "white", margin: "2vh" }}>Voir tout</Link>
         </div>
         <div className="container" style={styles.root}>
           <GridList 
@@ -215,13 +274,16 @@ class Home extends Component {
               </GridTile>
               ))}
           </GridList>
+          <Link to="/Results" style={{ color: "white", margin: "2vh" }}>Voir tout</Link>
         </div>
-        <RaisedButton
-          style={styles.button}
-          label="Nouveau Match"
-          backgroundColor="#fcd21c"
-          icon={<PeopleIcon className="muidocs-icon-people" />}
-        />
+        <Link to="/Match">
+          <RaisedButton
+            style={styles.button}
+            label="Nouveau Match"
+            backgroundColor="#fcd21c"
+            icon={<PeopleIcon className="muidocs-icon-people" />}
+          />
+        </Link>
       </div>
     );
   }
