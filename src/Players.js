@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Tabs, Tab, Card, CardMedia, CardTitle, CardText, CardActions, FlatButton } from "material-ui";
+import { Tabs, Tab, Card, CardMedia, CardTitle, CardText, CardActions, FlatButton, GridList, GridTile } from "material-ui";
 import SwipeableViews from 'react-swipeable-views';
 
 class Players extends Component {
@@ -23,6 +23,73 @@ class Players extends Component {
         margin: "auto"
       }
     };  
+
+    const matchesData = [
+      {
+        id: "1",
+        player_one: "Beber",
+        player_two: "Borcky",
+        team_one: "Liv",
+        team_two: "ManCity",
+        score: "3 - 1",
+        //img_one: liv,
+        //img_two: mancity
+      },
+      {
+        id: "2",
+        player_one: "Beber",
+        player_two: "Tutur",
+        team_one: "RMA",
+        team_two: "FCB",
+        score: "3 - 4",
+        //img_one: rma,
+        //img_two: fcb
+      },
+      {
+        id: "3",
+        player_one: "Borcky",
+        player_two: "Tutur",
+        team_one: "Arsenal",
+        team_two: "Juv",
+        score: "3 - 2",
+        //img_one: arsn,
+        //img_two: juv
+      },
+      {
+        id: "4",
+        player_one: "Borcky",
+        player_two: "Beber",
+        team_one: "ManCity",
+        team_two: "Juv",
+        score: "3 - 2",
+        //img_one: mancity,
+        //img_two: juv
+      },
+      {
+        id: "5",
+        player_one: "Tutur",
+        player_two: "Beber",
+        team_one: "RMA",
+        team_two: "Juv",
+        score: "3 - 2",
+        //img_one: rma,
+        //img_two: juv
+      },
+      {
+        id: "6",
+        player_one: "Borcky",
+        player_two: "Tutur",
+        team_one: "ManCity",
+        team_two: "Liv",
+        score: "3 - 2",
+        //img_one: mancity,
+        //img_two: liv
+      }
+    ];
+
+    function displayRecent(match) {
+      return <div><GridTile key={match.id} title={match.player_one + " " + "-" + " " + match.player_two}></GridTile></div>;
+    }
 
     return (
       <div>
@@ -55,6 +122,16 @@ class Players extends Component {
               <CardActions>
                 <FlatButton label="Voir l'armoire à trophées" />
               </CardActions>
+              <div>
+                <GridList>
+                  {matchesData.map((match) => (
+                    <If 
+                      condition={match.player_one==="Borcky" || match.player_to==="Borcky"}
+                      then={displayRecent(match)}
+                    />
+                  ))}
+                </GridList>
+              </div>
             </Card>
           </div>
           <div>
