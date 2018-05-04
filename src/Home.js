@@ -16,23 +16,18 @@ import rma from "./images/resultats_recents/rma.jpg";
 class Home extends Component {
   render() {
     const styles = {
-      button: {
-        position: "fixed",
-        top: "45vh",
-        right: "45vw"
-      },
       root: {
+        width: "12vw",
+        height: "85vh",
         display: "flex",
         flexwrap: "wrap",
         justifyContent: "space-around",
+        flexDirection: "column",
+        overflowY: "auto",
+        backgroundColor: "rgba(255,255,255,0.4)"
       },
       gridList: {
-        width: "12vw",
-        height: "85vh",
-        position: "fixed",
         overflowY: "auto",
-        right: "0",
-        backgroundColor: "rgba(192,192,192,0.3)"
       },
       subheader: {
         color: "#fcd21c",
@@ -47,8 +42,6 @@ class Home extends Component {
       tableContainer: {
         width: "12vw",
         height: "85vh",
-        position: "fixed",
-        left: "0",
         backgroundColor: "rgba(192,192,192,0.3)",
         overflowY: "auto",
       },      
@@ -68,6 +61,14 @@ class Home extends Component {
       },
       column: {
         padding: "0"
+      },
+      button_container: {
+        width: "76vw",
+        height: "85vh",
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "center",
+        justifyContent: "center"
       }
     };
     const matchesData = [
@@ -255,6 +256,15 @@ class Home extends Component {
             </Table>
           </div>
           <Link to="/Rankings" style={{ color: "white", margin: "2vh" }}>Voir tout</Link>
+        </div>        
+        <div className="button_container" style={styles.button_container}>
+          <Link to="/Match">
+            <RaisedButton
+              label="Nouveau Match"
+              backgroundColor="#fcd21c"
+              icon={<PeopleIcon className="muidocs-icon-people" />}
+            />
+          </Link>
         </div>
         <div className="container" style={styles.root}>
           <GridList 
@@ -276,14 +286,6 @@ class Home extends Component {
           </GridList>
           <Link to="/Results" style={{ color: "white", margin: "2vh" }}>Voir tout</Link>
         </div>
-        <Link to="/Match">
-          <RaisedButton
-            style={styles.button}
-            label="Nouveau Match"
-            backgroundColor="#fcd21c"
-            icon={<PeopleIcon className="muidocs-icon-people" />}
-          />
-        </Link>
       </div>
     );
   }
