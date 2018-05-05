@@ -277,8 +277,8 @@ class Home extends Component {
               <GridTile
                 style={styles.gridTile}
                 key={match.id}
-                title={match.player_one + " - " + match.player_two}
-                subtitle={match.team_one + " " + match.score + " " + match.team_two}
+                title={`${match.player_one} -  ${match.player_two}`}
+                subtitle={`${match.team_one} ${match.score} ${match.team_two}`}
                 titleBackground="linear-gradient(to top, rgba(0, 51, 102, 1) 0%, rgba(34, 66, 124, 0.5) 80%, rgba(34, 66, 124, 0) 100%)"
               >
               </GridTile>
