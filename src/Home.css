@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'fifa';
+    src: url('fonts/EASPORTS15.ttf')
+}
+
+.home {
+    background-image: url('images/backgrounds/home_background.jpg');
+    background-attachment: fixed;
+    background-position: bottom;
+    background-size: cover;
+    height: 85vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container {
+    height: 85vh;
+    overflow-y: scroll;
+}
