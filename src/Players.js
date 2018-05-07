@@ -4,18 +4,7 @@ import { Tabs, Tab, Card, CardHeader, CardActions, CardText, FlatButton } from "
 import SwipeableViews from 'react-swipeable-views';
 
 class Players extends Component {
-
-  state = {
-    slideIndex: 0,
-  };
-
-
-  handleChange = (value) => {
-    this.setState({slideIndex: value});
-  };
-
   render() {
-
     const styles = {
       slide: {
         padding: 10,
@@ -25,16 +14,14 @@ class Players extends Component {
     return (
       <div className="description_container">
         <Tabs
-          onChange={this.handleChange}
-          value={this.state.slideIndex}
+          value={this.props.display}
         >
-          <Tab label="Borcky" value={0} />
-          <Tab label="Tutur" value={1} />
-          <Tab label="Beber" value={2} />
+          <Tab label="Borcky" value={0} onClick={() => this.props.displayingZero()} />
+          <Tab label="Tutur" value={1} onClick={() => this.props.displayingOne()} />
+          <Tab label="Beber" value={2} onClick={() => this.props.displayingTwo()} />
         </Tabs>
         <SwipeableViews
-          index={this.state.slideIndex}
-          onChangeIndex={this.handleChange}
+          index={this.props.display}
         >
           <div style={styles.slide}>
             <Card>

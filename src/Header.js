@@ -8,13 +8,8 @@ import ronaldo from "./images/backgrounds/ronaldo.jpg";
 import appbar from "./images/backgrounds/appbar_background.jpg";
 
 class Header extends Component {
-  static defaultProps = {
-    open: false,
-  };
 
   render() {
-    const { open } = this.props;
-
     const styles = {
       drawer: {
         backgroundImage: `url(${ronaldo})`,
@@ -38,27 +33,27 @@ class Header extends Component {
           style={styles.drawer}
           docked={false}
           open={this.props.open}
-          onRequestChange={() => this.props.closingModal()}
+          onRequestChange={() => this.props.closingDrawer()}
         >
           <Link to="/">
-            <MenuItem onClick={() => this.props.closingModal()}>Accueil</MenuItem>
+            <MenuItem onClick={() => this.props.closingDrawer()}>Accueil</MenuItem>
           </Link>
           <Link to="/Players">
-            <MenuItem onClick={() => this.props.closingModal()}>Les joueurs</MenuItem>
+            <MenuItem onClick={() => this.props.closingDrawer()}>Les joueurs</MenuItem>
           </Link>
           <Link to="/Results">
-            <MenuItem onClick={() => this.props.closingModal()}>Résultats</MenuItem>
+            <MenuItem onClick={() => this.props.closingDrawer()}>Résultats</MenuItem>
           </Link>
           <Link to="/Rankings">
-            <MenuItem onClick={() => this.props.closingModal()}>Classements</MenuItem>
+            <MenuItem onClick={() => this.props.closingDrawer()}>Classements</MenuItem>
           </Link>
-          <MenuItem onClick={() => this.props.closingModal()}>Trophées individuels</MenuItem>
+          <MenuItem onClick={() => this.props.closingDrawer()}>Trophées individuels</MenuItem>
         </Drawer>
         <AppBar
           style={styles.appBar}
           titleStyle={styles.title}
           title="Resultats FiFa 18 Chambre 4B309"
-          onLeftIconButtonClick={() => this.props.openingModal()}
+          onLeftIconButtonClick={() => this.props.openingDrawer()}
         />
       </Fragment>
     );

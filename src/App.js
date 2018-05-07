@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Provider from "react-redux";
-import createStore from "redux";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
 import { MuiThemeProvider } from "material-ui/styles";
+import { composeWithDevTools } from "redux-devtools-extension"
 
 import "./App.css";
 import rootReducer from "./reducers"
-import Header from "./Header";
+import Header from "./Header.container";
 import BottomNav from './BottomNav';
 import Players from "./Players";
 import Home from "./Home";
@@ -14,7 +15,7 @@ import Results from "./Results";
 import Rankings from "./Rankings";
 import Match from "./Match";
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, composeWithDevTools())
 
 class App extends Component {
   render() {

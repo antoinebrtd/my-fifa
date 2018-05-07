@@ -1,15 +1,17 @@
+import { headerActionTypes } from "./Header.actions";
+
 const defaultState = {
     isOpen: false,
 };
 
-const modalReducer = (state = defaultState, action) => {
+const headerReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case 'OPEN_MODAL':
+        case headerActionTypes.DRAWER.OPEN:
             return {
                 ...state,
                 isOpen: true,
             };
-        case 'CLOSE_MODAL':
+        case headerActionTypes.DRAWER.CLOSE:
             return {
                 ...state,
                 isOpen: false,
@@ -19,4 +21,4 @@ const modalReducer = (state = defaultState, action) => {
     }
 };
 
-export default modalReducer;
+export default headerReducer;

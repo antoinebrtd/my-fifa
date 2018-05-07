@@ -1,8 +1,10 @@
-import combineReducers from "redux";
-import modalReducer from "/redux/ui/modal/Modal.reducer";
+import { combineReducers } from "redux";
+import headerReducer from "./redux/ui/header/Header.reducer";
+import playersReducer from "./redux/ui/players/Players.reducer";
 
 const rootReducer = combineReducers({
-    modal: modalReducer
+    header: headerReducer,
+    players: playersReducer
 });
 
 export default rootReducer;
