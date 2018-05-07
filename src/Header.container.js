@@ -1,19 +1,20 @@
 import { connect } from "react-redux";
 import {
     openModal,
-    closeModal,
+    closeModal
 } from "/redux/ui/modal/Modal.actions";
 import {
-    selectStateModal,
+    selectModalState
 } from "/redux/ui/modal/Modal.selectors";
 import Header from "./Header";
 
-const mapStateToProps = (state) => {
-    isModalOpen: state.modal.isOpen;
-};
+const mapStateToProps = state => ({
+    open: selectModalState(state),
+});
 
-const mapDispatchToProps = (dispatch) => {
-    openModal: () => dispatch(openModal);
-};
+const mapDispatchToProps = dispatch => ({
+    openingModal: () => dispatch(openModal()),
+    closingModal: () => dispatch(closeModal())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

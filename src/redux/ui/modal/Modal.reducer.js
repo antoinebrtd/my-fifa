@@ -14,7 +14,8 @@ const modalReducer = (state = defaultState, action) => {
                 ...state,
                 isOpen: false,
             };
-        return (state)
+        default:
+            return (state);
     }
 };
 

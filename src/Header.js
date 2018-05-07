@@ -8,19 +8,13 @@ import ronaldo from "./images/backgrounds/ronaldo.jpg";
 import appbar from "./images/backgrounds/appbar_background.jpg";
 
 class Header extends Component {
-  state = {
-    open: false
+  static defaultProps = {
+    open: false,
   };
 
-  displayMenu() {
-    this.setState({ open: !this.state.open });
-  }
-
-  handleClose() {
-    this.setState({ open: false });
-  }
-
   render() {
+    const { open } = this.props;
+
     const styles = {
       drawer: {
         backgroundImage: `url(${ronaldo})`,
@@ -31,7 +25,6 @@ class Header extends Component {
       appBar: {
         backgroundImage: `url(${appbar})`,
         backgroundPosition: 'bottom',
-        //height: "8vh"
       },
       title: {
         fontFamily: 'fifa',
@@ -44,28 +37,28 @@ class Header extends Component {
         <Drawer
           style={styles.drawer}
           docked={false}
-          open={this.state.open}
-          onRequestChange={open => this.setState({ open })}
+          open={this.props.open}
+          onRequestChange={() => this.props.closingModal()}
         >
           <Link to="/">
-            <MenuItem onClick={() => this.handleClose()}>Accueil</MenuItem>
+            <MenuItem onClick={() => this.props.closingModal()}>Accueil</MenuItem>
           </Link>
           <Link to="/Players">
-            <MenuItem onClick={() => this.handleClose()}>Les joueurs</MenuItem>
+            <MenuItem onClick={() => this.props.closingModal()}>Les joueurs</MenuItem>
           </Link>
           <Link to="/Results">
-            <MenuItem onClick={() => this.handleClose()}>Résultats</MenuItem>
+            <MenuItem onClick={() => this.props.closingModal()}>Résultats</MenuItem>
           </Link>
           <Link to="/Rankings">
-            <MenuItem onClick={() => this.handleClose()}>Classements</MenuItem>
+            <MenuItem onClick={() => this.props.closingModal()}>Classements</MenuItem>
           </Link>
-          <MenuItem onClick={() => this.handleClose()}>Trophées individuels</MenuItem>
+          <MenuItem onClick={() => this.props.closingModal()}>Trophées individuels</MenuItem>
         </Drawer>
         <AppBar
           style={styles.appBar}
           titleStyle={styles.title}
           title="Resultats FiFa 18 Chambre 4B309"
-          onLeftIconButtonClick={() => this.displayMenu()}
+          onLeftIconButtonClick={() => this.props.openingModal()}
         />
       </Fragment>
     );
