@@ -1,25 +1,14 @@
 export const playersActionTypes = {
     TABS: {
-        PLAYER_ZERO: 'DISPLAY_ZERO',
-        PLAYER_ONE: 'DISPLPAY_ONE',
-        PLAYER_TWO: 'DISPLAY_TWO'
+        SWITCH: 'SWITCH_PLAYER'
     }
 };
 
-export const displayZero = () => ({
-    type: playersActionTypes.TABS.PLAYER_ZERO
-});
-
-export const displayOne = () => ({
-    type: playersActionTypes.TABS.PLAYER_ONE
-});
-
-export const displayTwo = () => ({
-    type: playersActionTypes.TABS.PLAYER_TWO
+export const switchDisplay = (value) => ({
+    type: playersActionTypes.TABS.SWITCH,
+    index: value
 });
 
 export default {
-    displayZero,
-    displayOne,
-    displayTwo
+    switchDisplay
 };

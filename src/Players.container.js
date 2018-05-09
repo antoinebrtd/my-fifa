@@ -1,8 +1,6 @@
 import { connect } from "react-redux";
 import {
-    displayZero,
-    displayOne,
-    displayTwo
+    switchDisplay
 } from "./redux/ui/players/Players.actions";
 import {
     selectTabsState
@@ -14,9 +12,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    displayingOne: () => dispatch(displayZero()),
-    displayingTwo: () => dispatch(displayOne()),
-    displayingThree: () => dispatch(displayTwo())
+    handleDisplay: (value) => dispatch(switchDisplay(value))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PLayers);
+export default connect(mapStateToProps, mapDispatchToProps)(Players);

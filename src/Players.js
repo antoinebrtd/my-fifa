@@ -13,15 +13,17 @@ class Players extends Component {
 
     return (
       <div className="description_container">
-        <Tabs
+        <Tabs          
           value={this.props.display}
+          onChange={this.props.handleDisplay}
         >
-          <Tab label="Borcky" value={0} onClick={() => this.props.displayingZero()} />
-          <Tab label="Tutur" value={1} onClick={() => this.props.displayingOne()} />
-          <Tab label="Beber" value={2} onClick={() => this.props.displayingTwo()} />
+          <Tab label="Borcky" value={0} />
+          <Tab label="Tutur" value={1} />
+          <Tab label="Beber" value={2} />
         </Tabs>
         <SwipeableViews
           index={this.props.display}
+          onChangeIndex={this.props.handleDisplay}
         >
           <div style={styles.slide}>
             <Card>

@@ -6,20 +6,10 @@ const defaultState = {
 
 const playersReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case playersActionTypes.TABS.DISPLAY_ZERO:
+        case playersActionTypes.TABS.SWITCH:
             return {
                 ...state,
-                display: 0,
-            };
-        case playersActionTypes.TABS.DISPLAY_ONE:
-            return {
-                ...state,
-                display: 1,
-            };
-        case playersActionTypes.TABS.DISPLAY_TWO:
-            return {
-                ...state,
-                display: 2,
+                display: action.index,
             };
         default:
             return (state);
