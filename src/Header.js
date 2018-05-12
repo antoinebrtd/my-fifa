@@ -6,16 +6,18 @@ import MenuItem from "material-ui/MenuItem";
 import { Link } from "react-router-dom";
 import ronaldo from "./images/backgrounds/ronaldo.jpg";
 import appbar from "./images/backgrounds/appbar_background.jpg";
+import PlayerIcon from "material-ui-icons/People";
+import HomeIcon from  "material-ui-icons/Home";
+import RankIcon from  "material-ui-icons/Sort";
+import ResultIcon from  "material-ui-icons/InsertInvitation";
+import TrophyIcon from  "material-ui-icons/LooksOne";
 
 class Header extends Component {
 
   render() {
     const styles = {
-      drawer: {
-        backgroundImage: `url(${ronaldo})`,
-        backgroundPosition: 'bottom',
-        backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
+      ronaldo: {
+        marginTop: "12vh"
       },
       appBar: {
         backgroundImage: `url(${appbar})`,
@@ -24,6 +26,10 @@ class Header extends Component {
       title: {
         fontFamily: 'fifa',
         fontSize: '2.7em'
+      },
+      item: {
+        textAlign: 'left',
+        marginTop: "3vh"
       }
     };
 
@@ -36,18 +42,19 @@ class Header extends Component {
           onRequestChange={() => this.props.closingDrawer()}
         >
           <Link to="/">
-            <MenuItem onClick={() => this.props.closingDrawer()}>Accueil</MenuItem>
+            <MenuItem style={styles.item} leftIcon={<HomeIcon className="muidocs-icon-home"/>} onClick={() => this.props.closingDrawer()}>Accueil</MenuItem>
           </Link>
           <Link to="/Players">
-            <MenuItem onClick={() => this.props.closingDrawer()}>Les joueurs</MenuItem>
+            <MenuItem style={styles.item} leftIcon={<PlayerIcon className="muidocs-icon-player"/>} onClick={() => this.props.closingDrawer()}>Les joueurs</MenuItem>
           </Link>
           <Link to="/Results">
-            <MenuItem onClick={() => this.props.closingDrawer()}>Résultats</MenuItem>
+            <MenuItem style={styles.item} leftIcon={<ResultIcon className="muidocs-icon-result"/>} onClick={() => this.props.closingDrawer()}>Résultats</MenuItem>
           </Link>
           <Link to="/Rankings">
-            <MenuItem onClick={() => this.props.closingDrawer()}>Classements</MenuItem>
+            <MenuItem style={styles.item} leftIcon={<RankIcon className="muidocs-icon-rank"/>} onClick={() => this.props.closingDrawer()}>Classements</MenuItem>
           </Link>
-          <MenuItem onClick={() => this.props.closingDrawer()}>Trophées individuels</MenuItem>
+          <MenuItem style={styles.item} leftIcon={<TrophyIcon className="muidocs-icon-trophy"/>} onClick={() => this.props.closingDrawer()}>Trophées</MenuItem>
+          <img src={ronaldo} style={styles.ronaldo} alt="ronaldo"/>
         </Drawer>
         <AppBar
           style={styles.appBar}
