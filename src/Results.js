@@ -6,20 +6,6 @@ import SortIcon from "material-ui-icons/Sort";
 import PeopleIcon from "material-ui-icons/People";
 
 class Results extends Component {
-    state = {
-        valueRecent: 1,
-        valueStriking: 1,
-    };
-
-    handleChangeRecent = (value) => {
-        this.setState({valueRecent: value});
-        console.log(this.state.valueRecent);
-    };
-
-    handleChangeStriking = (value) => {
-        this.setState({valueStriking: value});
-        console.log(this.state.valueStriking);
-    };
     
     render() {
         const styles={
@@ -35,7 +21,7 @@ class Results extends Component {
                         <Toolbar>
                             <ToolbarGroup>
                                 <ToolbarTitle text="Derniers résultats" />
-                                <DropDownMenu value={this.state.valueRecent} onChange={this.handleChangeRecent}>
+                                <DropDownMenu value={this.props.displayItemRecent} onChange={this.props.handleDisplayRecent}>
                                     <MenuItem value={1} primaryText="Aujourd'hui" />
                                     <MenuItem value={2} primaryText="Cette semaine" />
                                     <MenuItem value={3} primaryText="Ce mois" />
@@ -59,7 +45,7 @@ class Results extends Component {
                         <Toolbar>
                             <ToolbarGroup>
                                 <ToolbarTitle text="Résultats marquants" />
-                                <DropDownMenu value={this.state.valueStriking} onChange={this.handleChangeStriking}>
+                                <DropDownMenu value={this.props.displayItemStriking} onChange={this.props.handleDisplayStriking}>
                                     <MenuItem value={1} primaryText="Haute-volée" />
                                     <MenuItem value={2} primaryText="Humiliation" />
                                     <MenuItem value={3} primaryText="Bus" />
