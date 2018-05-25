@@ -35,4 +35,12 @@
     height: 45vh;
     width: 30vw;
     margin: 0;
+    background-color: rgba(0, 51, 102, 0.6);
+}
+
+.select_field{
+    width: 30vw;
+    height: 8vh;
+    display: flex;
+    justify-content: space-around;
 }

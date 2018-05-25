@@ -23,7 +23,7 @@ class Players extends Component {
         </Tabs>
         <SwipeableViews
           index={this.props.display}
-          onChangeIndex={this.props.handleDisplay}
+          onChangeIndex={() => this.props.handleDisplay()}
         >
           <div style={styles.slide}>
             <Card>

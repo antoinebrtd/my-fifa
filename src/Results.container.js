@@ -8,7 +8,7 @@ import {
     startFetchMatchLow,
     switchItemRecent,
     switchItemStriking
-} from "./reddux/ui/results/Results.actions";
+} from "./redux/ui/results/Results.actions";
 import {
     selectMatchToday,
     selectMatchWeek,
@@ -39,9 +39,8 @@ const mapDispatchToPros = dispatch => ({
     fetchHigh: () => dispatch(startFetchMatchHigh),
     fetchGap: () => dispatch(startFetchMatchGap),
     fetchLow: () => dispatch(startFetchMatchLow),
-    handleDisplayRecent: (value) => dispatch(switchItemRecent(value)),
-    handleDisplayStriking: (value) => dispatch(switchItemStriking(value))
+    handleDisplayRecent: () => dispatch(switchItemRecent(value)),
+    handleDisplayStriking: () => dispatch(switchItemStriking(value))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Reuslts);
-
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

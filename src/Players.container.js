@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    handleDisplay: (value) => dispatch(switchDisplay(value))
+    handleDisplay: () => dispatch(switchDisplay(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Players);

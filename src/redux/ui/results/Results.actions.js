@@ -56,7 +56,7 @@ export const switchItemRecent = (value) => ({
     index: value
 });
 
-export const switchItemRecent = (value) => ({
+export const switchItemStriking = (value) => ({
     type: resultsActionTypes.DISPLAY.STRIKING,
     index: value
 });
@@ -69,5 +69,7 @@ export default {
     startFetchMatchMonth,
     startFetchMatchHigh,
     startFetchMatchGap,
-    startFetchMatchLow
+    startFetchMatchLow,
+    switchItemRecent,
+    switchItemStriking
 };

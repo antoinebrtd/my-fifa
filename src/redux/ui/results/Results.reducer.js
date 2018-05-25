@@ -33,7 +33,7 @@ const resultsReducer = (state = defaultState, action) => {
 
                 }
             };
-        case resultsActionTypes.FETCH.RECENT.WEEK:
+        case resultsActionTypes.FETCH.RECENT.MONTH:
             return {
                 ...state,
                 month: {
@@ -68,13 +68,21 @@ const resultsReducer = (state = defaultState, action) => {
         case resultsActionTypes.DISPLAY.RECENT:
             return {
                 ...state,
-                recent: action.index
+                display: {
+                    ...state.display,
+                    recent: action.index
+                }
             };
         case resultsActionTypes.DISPLAY.STRIKING:
             return {
                 ...state,
-                striking: action.index
+                display: {
+                    ...state.display,
+                    striking: action.index
+                }
             };
+        default:
+            return (state);
     }
 };
 
