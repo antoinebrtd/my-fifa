@@ -76,7 +76,7 @@ class Results extends Component {
                 <DropDownMenu
                   value={this.props.displayItemStriking}
                   onChange={(event, index, value) =>
-                    this.props.handleDisplayStriking(value)
+                    this.props.fetchStriking(value)
                   }
                 >
                   <MenuItem value={0} primaryText="Haute-volée" />

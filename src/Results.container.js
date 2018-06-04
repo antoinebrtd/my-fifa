@@ -1,46 +1,24 @@
 import { connect } from "react-redux";
 import {
-  startFetchMatchToday,
-  startFetchMatchWeek,
-  startFetchMatchMonth,
   startFetchMatchHigh,
-  startFetchMatchGap,
-  startFetchMatchLow,
-  switchItemRecent,
-  switchItemStriking
-} from "./redux/ui/results/Results.actions";
+  switchItemRecent
+} from "./redux/entities/matches/Matches.actions";
 import {
-  selectMatchToday,
-  selectMatchWeek,
-  selectMatchMonth,
-  selectMatchHigh,
-  selectMatchGap,
-  selectMatchLow,
+  selectStrikingMatchesToDisplay,
   selectItemRecent,
   selectItemStriking
-} from "./redux/ui/results/Results.selectors";
+} from "./redux/entities/matches/Matches.selectors";
 import Results from "./Results";
 
 const mapStateToProps = state => ({
-  displayToday: selectMatchToday(state),
-  displayWeek: selectMatchWeek(state),
-  displayMonth: selectMatchMonth(state),
-  displayHigh: selectMatchHigh(state),
-  displayGap: selectMatchGap(state),
-  displayLow: selectMatchLow(state),
+  displayStriking: selectStrikingMatchesToDisplay(state),
   displayItemRecent: selectItemRecent(state),
   displayItemStriking: selectItemStriking(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchToday: () => dispatch(startFetchMatchToday),
-  fetchWeek: () => dispatch(startFetchMatchWeek),
-  fetchMonth: () => dispatch(startFetchMatchMonth),
-  fetchHigh: () => dispatch(startFetchMatchHigh),
-  fetchGap: () => dispatch(startFetchMatchGap),
-  fetchLow: () => dispatch(startFetchMatchLow),
   handleDisplayRecent: value => dispatch(switchItemRecent(value)),
-  handleDisplayStriking: value => dispatch(switchItemStriking(value))
+  fetchStriking: value => dispatch(startFetchMatchHigh(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
