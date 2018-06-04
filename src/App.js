@@ -8,7 +8,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import "./App.css";
 import rootReducer from "./reducers";
 import Header from "./Header.container";
-import BottomNav from "./BottomNav";
+import BottomNav from "./BottomNav.container";
 import Players from "./Players.container";
 import Home from "./Home";
 import Results from "./Results.container";
