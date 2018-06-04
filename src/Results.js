@@ -18,6 +18,8 @@ import SortIcon from "material-ui-icons/Sort";
 import PeopleIcon from "material-ui-icons/People";
 import SearchIcon from "material-ui-icons/Search";
 
+import { playersData, teamsData } from "./redux/entities/Data";
+
 class Results extends Component {
   render() {
     const styles = {
@@ -44,7 +46,9 @@ class Results extends Component {
                 <ToolbarTitle text="Derniers résultats" />
                 <DropDownMenu
                   value={this.props.displayItemRecent}
-                  onChange={value => this.props.handleDisplayRecent(value)}
+                  onChange={(event, index, value) =>
+                    this.props.handleDisplayRecent(value)
+                  }
                 >
                   <MenuItem value={0} primaryText="Aujourd'hui" />
                   <MenuItem value={1} primaryText="Cette semaine" />
@@ -71,7 +75,9 @@ class Results extends Component {
                 <ToolbarTitle text="Résultats marquants" />
                 <DropDownMenu
                   value={this.props.displayItemStriking}
-                  onChange={value => this.props.handleDisplayStriking(value)}
+                  onChange={(event, index, value) =>
+                    this.props.handleDisplayStriking(value)
+                  }
                 >
                   <MenuItem value={0} primaryText="Haute-volée" />
                   <MenuItem value={1} primaryText="Humiliation" />
@@ -99,9 +105,12 @@ class Results extends Component {
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
               >
-                <MenuItem value={1} primaryText="Beber" />
-                <MenuItem value={2} primaryText="Borcky" />
-                <MenuItem value={3} primaryText="Tutur" />
+                {playersData.map(player => (
+                  <MenuItem
+                    value={playersData.indexOf(player) + 1}
+                    primaryText={player.name}
+                  />
+                ))}
               </SelectField>
               <Chip style={styles.chip}>Joueurs</Chip>
               <SelectField
@@ -109,9 +118,12 @@ class Results extends Component {
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
               >
-                <MenuItem value={1} primaryText="Beber" />
-                <MenuItem value={2} primaryText="Borcky" />
-                <MenuItem value={3} primaryText="Tutur" />
+                {playersData.map(player => (
+                  <MenuItem
+                    value={playersData.indexOf(player) + 1}
+                    primaryText={player.name}
+                  />
+                ))}
               </SelectField>
             </div>
             <div className="select_field">
@@ -120,12 +132,12 @@ class Results extends Component {
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
               >
-                <MenuItem value={1} primaryText="RM" />
-                <MenuItem value={2} primaryText="FCB" />
-                <MenuItem value={3} primaryText="Man City" />
-                <MenuItem value={4} primaryText="Juventus" />
-                <MenuItem value={5} primaryText="Liverpool" />
-                <MenuItem value={6} primaryText="Arsenal" />
+                {teamsData.map(team => (
+                  <MenuItem
+                    value={teamsData.indexOf(team) + 1}
+                    primaryText={team.name}
+                  />
+                ))}
               </SelectField>
               <Chip style={styles.chip}>Equipes</Chip>
               <SelectField
@@ -133,12 +145,12 @@ class Results extends Component {
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
               >
-                <MenuItem value={1} primaryText="RM" />
-                <MenuItem value={2} primaryText="FCB" />
-                <MenuItem value={3} primaryText="Man City" />
-                <MenuItem value={4} primaryText="Juventus" />
-                <MenuItem value={5} primaryText="Liverpool" />
-                <MenuItem value={6} primaryText="Arsenal" />
+                {teamsData.map(team => (
+                  <MenuItem
+                    value={teamsData.indexOf(team) + 1}
+                    primaryText={team.name}
+                  />
+                ))}
               </SelectField>
             </div>
             <div className="select_field">
