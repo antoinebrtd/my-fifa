@@ -5,11 +5,7 @@ export const matchesActionTypes = {
       WEEK: "MATCH.FETCH.RECENT.START.WEEK",
       MONTH: "MATCH.FETCH.RECENT.START.MONTH"
     },
-    STRIKING: {
-      HIGH: "MATCH.FETCH.STRIKING.START.HIGH",
-      GAP: "MATCH.FETCH.STRIKING.START.GAP",
-      LOW: "MATCH.FETCH.STRIKING.START.LOW"
-    },
+    STRIKING: "MATCH.FETCH.STRIKING",
     ERROR: "MATCH.FETCH.ERROR",
     SUCCESS: "MATCH.FETCH.SUCCESS"
   },
@@ -18,8 +14,8 @@ export const matchesActionTypes = {
   }
 };
 
-export const startFetchMatchHigh = value => ({
-  type: matchesActionTypes.FETCH.STRIKING.HIGH,
+export const startFetchStrikingMatch = value => ({
+  type: matchesActionTypes.FETCH.STRIKING,
   index: value
 });
 
@@ -39,6 +35,6 @@ export const switchItemRecent = value => ({
 export default {
   errorFetchMatch,
   successFetchMatch,
-  startFetchMatchHigh,
+  startFetchStrikingMatch,
   switchItemRecent
 };

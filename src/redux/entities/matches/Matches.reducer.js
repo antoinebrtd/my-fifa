@@ -1,5 +1,9 @@
 import { matchesActionTypes } from "./Matches.actions";
-import { selectHighMatches } from "./Matches.selectors";
+import {
+  selectHighMatches,
+  selectGapMatches,
+  selectLowMatches
+} from "./Matches.selectors";
 
 const defaultState = {
   matches: [
@@ -42,7 +46,7 @@ const defaultState = {
       id: 5,
       players: [1, 2],
       teams: [1, 0],
-      score: [3, 2],
+      score: [1, 0],
       date: "2018-03-02T18:03:09.007Z"
     }
   ],
@@ -56,15 +60,38 @@ const defaultState = {
 
 const matchesReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case matchesActionTypes.FETCH.STRIKING.HIGH:
-      return {
-        ...state,
-        strikingMatchesToDisplay: selectHighMatches(state),
-        display: {
-          ...state.display,
-          striking: action.index
-        }
-      };
+    case matchesActionTypes.FETCH.STRIKING:
+      switch (action.index) {
+        case 0:
+          return {
+            ...state,
+            strikingMatchesToDisplay: selectHighMatches(state),
+            display: {
+              ...state.display,
+              striking: action.index
+            }
+          };
+        case 1:
+          return {
+            ...state,
+            strikingMatchesToDisplay: selectGapMatches(state),
+            display: {
+              ...state.display,
+              striking: action.index
+            }
+          };
+        case 2:
+          return {
+            ...state,
+            strikingMatchesToDisplay: selectLowMatches(state),
+            display: {
+              ...state.display,
+              striking: action.index
+            }
+          };
+        default:
+          return state;
+      }
     case matchesActionTypes.DISPLAY.RECENT:
       return {
         ...state,

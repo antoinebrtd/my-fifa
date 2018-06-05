@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import {
-  startFetchMatchHigh,
+  startFetchStrikingMatch,
   switchItemRecent
 } from "./redux/entities/matches/Matches.actions";
 import {
@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleDisplayRecent: value => dispatch(switchItemRecent(value)),
-  fetchStriking: value => dispatch(startFetchMatchHigh(value))
+  fetchStriking: value => dispatch(startFetchStrikingMatch(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

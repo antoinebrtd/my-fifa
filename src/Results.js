@@ -11,7 +11,9 @@ import {
   Chip,
   SelectField,
   TextField,
-  DatePicker
+  DatePicker,
+  GridList,
+  GridTile
 } from "material-ui";
 import { Link } from "react-router-dom";
 import SortIcon from "material-ui-icons/Sort";
@@ -92,6 +94,26 @@ class Results extends Component {
                 />
               </ToolbarGroup>
             </Toolbar>
+            <GridList cellHeight={200} cols={2.2}>
+              {this.props.displayStriking.map(match => (
+                <GridTile
+                  key={match.id}
+                  title={`${
+                    playersData.find(player => player.id === match.players[0])
+                      .name
+                  } -  ${
+                    playersData.find(player => player.id === match.players[1])
+                      .name
+                  }`}
+                  subtitle={`${
+                    teamsData.find(team => team.id === match.teams[0]).name
+                  } ${match.score[0]} - ${match.score[1]} ${
+                    teamsData.find(team => team.id === match.teams[1]).name
+                  }`}
+                  titleBackground="linear-gradient(to top, rgba(0, 51, 102, 1) 0%, rgba(34, 66, 124, 0.5) 80%, rgba(34, 66, 124, 0) 100%)"
+                />
+              ))}
+            </GridList>
           </div>
           <div className="search_container">
             <Toolbar>

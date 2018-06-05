@@ -53,8 +53,8 @@ export let playersData = [
     losses: 2,
     points: 6,
     goaldiff: 3,
-    for: 12,
-    against: 9,
+    for: 10,
+    against: 7,
     trophies: [0, 2, 3]
   },
   {
@@ -66,8 +66,8 @@ export let playersData = [
     losses: 1,
     points: 9,
     goaldiff: 1,
-    for: 10,
-    against: 9,
+    for: 8,
+    against: 7,
     trophies: [1, 4]
   },
   {
