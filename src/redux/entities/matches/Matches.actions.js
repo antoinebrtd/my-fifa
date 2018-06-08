@@ -1,18 +1,16 @@
 export const matchesActionTypes = {
   FETCH: {
-    RECENT: {
-      TODAY: "MATCH.FETCH.RECENT.START.TODAY",
-      WEEK: "MATCH.FETCH.RECENT.START.WEEK",
-      MONTH: "MATCH.FETCH.RECENT.START.MONTH"
-    },
+    RECENT: "MATCH.FETCH.RECENT",
     STRIKING: "MATCH.FETCH.STRIKING",
     ERROR: "MATCH.FETCH.ERROR",
     SUCCESS: "MATCH.FETCH.SUCCESS"
-  },
-  DISPLAY: {
-    RECENT: "SWITCH.ITEM.RECENT"
   }
 };
+
+export const startFetchRecentMatch = value => ({
+  type: matchesActionTypes.FETCH.RECENT,
+  index: value
+});
 
 export const startFetchStrikingMatch = value => ({
   type: matchesActionTypes.FETCH.STRIKING,
@@ -27,14 +25,9 @@ export const successFetchMatch = () => ({
   type: matchesActionTypes.FETCH.SUCCESS
 });
 
-export const switchItemRecent = value => ({
-  type: matchesActionTypes.DISPLAY.RECENT,
-  index: value
-});
-
 export default {
   errorFetchMatch,
   successFetchMatch,
-  startFetchStrikingMatch,
-  switchItemRecent
+  startFetchRecentMatch,
+  startFetchStrikingMatch
 };

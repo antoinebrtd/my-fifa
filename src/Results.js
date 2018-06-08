@@ -49,7 +49,7 @@ class Results extends Component {
                 <DropDownMenu
                   value={this.props.displayItemRecent}
                   onChange={(event, index, value) =>
-                    this.props.handleDisplayRecent(value)
+                    this.props.fetchRecent(value)
                   }
                 >
                   <MenuItem value={0} primaryText="Aujourd'hui" />

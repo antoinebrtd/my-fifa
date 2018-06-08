@@ -1,5 +1,6 @@
 import { matchesActionTypes } from "./Matches.actions";
 import {
+  selectDayMatches,
   selectHighMatches,
   selectGapMatches,
   selectLowMatches
@@ -12,7 +13,7 @@ const defaultState = {
       players: [0, 1],
       teams: [0, 1],
       score: [3, 1],
-      date: "2018-02-26T18:23:56.611Z"
+      date: "2018-06-06T18:23:56.611Z"
     },
     {
       id: 1,
@@ -54,8 +55,8 @@ const defaultState = {
     recent: 0,
     striking: 0
   },
-  recentMatchesToDisplay: {},
-  strikingMatchesToDisplay: {}
+  recentMatchesToDisplay: [],
+  strikingMatchesToDisplay: []
 };
 
 const matchesReducer = (state = defaultState, action) => {
@@ -92,14 +93,38 @@ const matchesReducer = (state = defaultState, action) => {
         default:
           return state;
       }
-    case matchesActionTypes.DISPLAY.RECENT:
-      return {
-        ...state,
-        display: {
-          ...state.display,
-          recent: action.index
-        }
-      };
+    case matchesActionTypes.FETCH.RECENT:
+      switch (action.index) {
+        case 0:
+          return {
+            ...state,
+            recentMatchesToDisplay: selectDayMatches(state),
+            display: {
+              ...state.display,
+              recent: action.index
+            }
+          };
+        case 1:
+          return {
+            ...state,
+            recentMatchesToDisplay: selectDayMatches(state),
+            display: {
+              ...state.display,
+              recent: action.index
+            }
+          };
+        case 2:
+          return {
+            ...state,
+            recentMatchesToDisplay: selectDayMatches(state),
+            display: {
+              ...state.display,
+              recent: action.index
+            }
+          };
+        default:
+          return state;
+      }
     default:
       return state;
   }

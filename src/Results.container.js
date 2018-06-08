@@ -1,9 +1,10 @@
 import { connect } from "react-redux";
 import {
   startFetchStrikingMatch,
-  switchItemRecent
+  startFetchRecentMatch
 } from "./redux/entities/matches/Matches.actions";
 import {
+  selectRecentMatchesToDisplay,
   selectStrikingMatchesToDisplay,
   selectItemRecent,
   selectItemStriking
@@ -11,13 +12,14 @@ import {
 import Results from "./Results";
 
 const mapStateToProps = state => ({
+  displayRecent: selectRecentMatchesToDisplay(state),
   displayStriking: selectStrikingMatchesToDisplay(state),
   displayItemRecent: selectItemRecent(state),
   displayItemStriking: selectItemStriking(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleDisplayRecent: value => dispatch(switchItemRecent(value)),
+  fetchRecent: value => dispatch(startFetchRecentMatch(value)),
   fetchStriking: value => dispatch(startFetchStrikingMatch(value))
 });
 
