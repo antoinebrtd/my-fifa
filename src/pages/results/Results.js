@@ -23,6 +23,10 @@ import SearchIcon from "material-ui-icons/Search";
 import { playersData, teamsData } from "../../redux/entities/Data";
 
 class Results extends Component {
+  componentWillMount() {
+    this.props.fetchStriking(0);
+  }
+
   render() {
     const styles = {
       button: {
