@@ -13,7 +13,7 @@ import {
 } from "material-ui";
 import { Link } from "react-router-dom";
 
-import { playersData, matchesData, teamsData } from "./redux/entities/Data";
+import { playersData, matchesData, teamsData } from "../../redux/entities/Data";
 
 class Home extends Component {
   render() {

@@ -7,13 +7,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import "./App.css";
 import rootReducer from "./reducers";
-import Header from "./Header.container";
-import BottomNav from "./BottomNav.container";
-import Players from "./Players.container";
-import Home from "./Home";
-import Results from "./Results.container";
-import Rankings from "./Rankings";
-import Match from "./Match";
+import Header from "./pages/header";
+import BottomNav from "./pages/bottomNav";
+import Players from "./pages/players";
+import Home from "./pages/home";
+import Results from "./pages/results";
+import Rankings from "./pages/rankings";
+import Match from "./pages/match";
 
 const store = createStore(rootReducer, composeWithDevTools());
 

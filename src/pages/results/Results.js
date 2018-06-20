@@ -20,7 +20,7 @@ import SortIcon from "material-ui-icons/Sort";
 import PeopleIcon from "material-ui-icons/People";
 import SearchIcon from "material-ui-icons/Search";
 
-import { playersData, teamsData } from "./redux/entities/Data";
+import { playersData, teamsData } from "../../redux/entities/Data";
 
 class Results extends Component {
   render() {
@@ -36,6 +36,11 @@ class Results extends Component {
       },
       selectField: {
         width: "8vw"
+      },
+      gridList: {
+        display: "flex",
+        flexWrap: "nowrap",
+        overflowX: "auto"
       }
     };
 
@@ -94,7 +99,7 @@ class Results extends Component {
                 />
               </ToolbarGroup>
             </Toolbar>
-            <GridList cellHeight={200} cols={2.2}>
+            <GridList cellHeight={200} cols={2.2} style={styles.gridList}>
               {this.props.displayStriking.map(match => (
                 <GridTile
                   key={match.id}
