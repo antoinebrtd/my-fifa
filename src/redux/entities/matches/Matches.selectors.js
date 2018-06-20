@@ -1,36 +1,31 @@
+import * as moment from "moment";
+
 export const selectDayMatches = state => {
-  let today = new Date();
-  today.setHours(0);
-  today.setMinutes(0);
-  today.setSeconds(0);
-  today.toISOString();
-  let dayMatches = state.matches.filter(
-    ({ date: matchDate }) => matchDate >= today
+  let today = moment({});
+  today.set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
+  let dayMatches = state.matches.filter(({ date: matchDate }) =>
+    matchDate.isAfter(today)
   );
   return dayMatches;
 };
 
-/*export const selectWeekMatches = state => {
-  let today = new Date.toISOString();
-  today.setHours(0);
-  today.setMinutes(0);
-  today.setSeconds(0);
-  let weekMatches = state.matches.filter(
-    ({ date: matchDate }) => matchDate >= today
+export const selectWeekMatches = state => {
+  let today = moment({});
+  today.set({ day: 1, hour: 0, minute: 0, second: 0, millisecond: 0 });
+  let weekMatches = state.matches.filter(({ date: matchDate }) =>
+    matchDate.isAfter(today)
   );
   return weekMatches;
 };
 
 export const selectMonthMatches = state => {
-  let today = new Date.toISOString();
-  today.setHours(0);
-  today.setMinutes(0);
-  today.setSeconds(0);
-  let monthMatches = state.matches.filter(
-    ({ date: matchDate }) => matchDate >= today
+  let today = moment({});
+  today.set({ date: 1, hour: 0, minute: 0, second: 0, millisecond: 0 });
+  let weekMatches = state.matches.filter(({ date: matchDate }) =>
+    matchDate.isAfter(today)
   );
-  return monthMatches;
-};*/
+  return weekMatches;
+};
 
 export const selectHighMatches = state => {
   let highMatches = state.matches.filter(
