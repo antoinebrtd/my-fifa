@@ -192,21 +192,23 @@ const matchesReducer = (state = defaultState, action) => {
         }
       };
     case matchesActionTypes.ADD.ADD_MATCH:
-      console.log(action.date);
-      fetch("http://reqres.in/api/users", {
+      fetch("http://127.0.0.1:8000/add/match", {
         method: "POST",
-        data: {
+        body: JSON.stringify({
           players: [selectPlayerOneToPost(state), selectPlayerTwoToPost(state)],
           teams: [selectTeamOneToPost(state), selectTeamTwoToPost(state)],
-          score: [selectScoreOneToPost(state), selectScoreTwoToPost(state)],
+          score: [
+            Number(selectScoreOneToPost(state)),
+            Number(selectScoreTwoToPost(state))
+          ],
           date: action.date
-        }
-      })
-        .then(function(response) {
-          return response.json();
         })
+      })
         .then(function(body) {
-          console.log(body);
+          console.log("Request success: ", body);
+        })
+        .catch(function(error) {
+          console.log("Request failure: ", error);
         });
       return {
         ...state,
