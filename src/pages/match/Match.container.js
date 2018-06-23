@@ -1,31 +1,22 @@
 import { connect } from "react-redux";
 import {
-  startFetchStrikingMatch,
-  startFetchRecentMatch,
   choosePlayerOne,
   choosePlayerTwo,
   chooseTeamOne,
   chooseTeamTwo,
   setScoreOne,
-  setScoreTwo
+  setScoreTwo,
+  addMatch
 } from "../../redux/entities/matches/Matches.actions";
 import {
-  selectRecentMatchesToDisplay,
-  selectStrikingMatchesToDisplay,
-  selectItemRecent,
-  selectItemStriking,
   selectPlayerOne,
   selectPlayerTwo,
   selectTeamOne,
   selectTeamTwo
 } from "../../redux/entities/matches/Matches.selectors";
-import Results from "./Results";
+import Match from "./Match";
 
 const mapStateToProps = state => ({
-  displayRecent: selectRecentMatchesToDisplay(state),
-  displayStriking: selectStrikingMatchesToDisplay(state),
-  displayItemRecent: selectItemRecent(state),
-  displayItemStriking: selectItemStriking(state),
   displayPlayerOne: selectPlayerOne(state),
   displayPlayerTwo: selectPlayerTwo(state),
   displayTeamOne: selectTeamOne(state),
@@ -33,17 +24,17 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchRecent: value => dispatch(startFetchRecentMatch(value)),
-  fetchStriking: value => dispatch(startFetchStrikingMatch(value)),
   changePlayerOne: value => dispatch(choosePlayerOne(value)),
   changePlayerTwo: value => dispatch(choosePlayerTwo(value)),
   changeTeamOne: value => dispatch(chooseTeamOne(value)),
   changeTeamTwo: value => dispatch(chooseTeamTwo(value)),
   changeScoreOne: event => dispatch(setScoreOne(event.target.value)),
-  changeScoreTwo: event => dispatch(setScoreTwo(event.target.value))
+  changeScoreTwo: event => dispatch(setScoreTwo(event.target.value)),
+  addingMatch: (score_one, score_two) =>
+    dispatch(addMatch(score_one, score_two))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Results);
+)(Match);

@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "fifa";
+  src: url("../../fonts/EASPORTS15.ttf");
+}
+
+.match_container {
+  background-image: url("../../images/backgrounds/home_background.jpg");
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: cover;
+  height: 85vh;
+}
+
+.new_container {
+  height: 85vh;
+  width: 30vw;
+  margin: auto;
+  background-color: rgba(0, 51, 102, 0.6);
+}
+
+.select_field {
+  width: 30vw;
+  height: 8vh;
+  display: flex;
+  justify-content: space-around;
+}

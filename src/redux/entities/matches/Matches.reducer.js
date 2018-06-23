@@ -5,7 +5,13 @@ import {
   selectMonthMatches,
   selectHighMatches,
   selectGapMatches,
-  selectLowMatches
+  selectLowMatches,
+  selectPlayerOneToPost,
+  selectPlayerTwoToPost,
+  selectTeamOneToPost,
+  selectTeamTwoToPost,
+  selectScoreOneToPost,
+  selectScoreTwoToPost
 } from "./Matches.selectors";
 import * as moment from "moment";
 
@@ -59,7 +65,16 @@ const defaultState = {
     striking: 0
   },
   recentMatchesToDisplay: [],
-  strikingMatchesToDisplay: []
+  strikingMatchesToDisplay: [],
+  match: {
+    player_one: null,
+    player_two: null,
+    team_one: null,
+    team_two: null,
+    score_one: null,
+    score_two: null,
+    date: null
+  }
 };
 
 const matchesReducer = (state = defaultState, action) => {
@@ -128,6 +143,84 @@ const matchesReducer = (state = defaultState, action) => {
         default:
           return state;
       }
+    case matchesActionTypes.SELECT.PLAYER_ONE:
+      return {
+        ...state,
+        match: {
+          ...state.match,
+          player_one: action.player_one
+        }
+      };
+    case matchesActionTypes.SELECT.PLAYER_TWO:
+      return {
+        ...state,
+        match: {
+          ...state.match,
+          player_two: action.player_two
+        }
+      };
+    case matchesActionTypes.SELECT.TEAM_ONE:
+      return {
+        ...state,
+        match: {
+          ...state.match,
+          team_one: action.team_one
+        }
+      };
+    case matchesActionTypes.SELECT.TEAM_TWO:
+      return {
+        ...state,
+        match: {
+          ...state.match,
+          team_two: action.team_two
+        }
+      };
+    case matchesActionTypes.SET.SCORE_ONE:
+      return {
+        ...state,
+        match: {
+          ...state.match,
+          score_one: action.score_one
+        }
+      };
+    case matchesActionTypes.SET.SCORE_TWO:
+      return {
+        ...state,
+        match: {
+          ...state.match,
+          score_two: action.score_two
+        }
+      };
+    case matchesActionTypes.ADD.ADD_MATCH:
+      console.log(action.date);
+      fetch("http://reqres.in/api/users", {
+        method: "POST",
+        data: {
+          players: [selectPlayerOneToPost(state), selectPlayerTwoToPost(state)],
+          teams: [selectTeamOneToPost(state), selectTeamTwoToPost(state)],
+          score: [selectScoreOneToPost(state), selectScoreTwoToPost(state)],
+          date: action.date
+        }
+      })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(body) {
+          console.log(body);
+        });
+      return {
+        ...state,
+        match: {
+          ...state.match,
+          player_one: null,
+          player_two: null,
+          team_one: null,
+          team_two: null,
+          score_one: null,
+          score_two: null,
+          date: null
+        }
+      };
     default:
       return state;
   }
