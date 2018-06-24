@@ -7,13 +7,13 @@ import {
   setScoreOne,
   setScoreTwo,
   addMatch
-} from "../../redux/entities/matches/Matches.actions";
+} from "../../redux/entities/addMatch/addMatch.actions";
 import {
   selectPlayerOne,
   selectPlayerTwo,
   selectTeamOne,
   selectTeamTwo
-} from "../../redux/entities/matches/Matches.selectors";
+} from "../../redux/entities/addMatch/addMatch.selectors";
 import Match from "./Match";
 
 const mapStateToProps = state => ({

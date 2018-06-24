@@ -156,15 +156,12 @@ class Results extends Component {
                 floatingLabelText="Joueur 1"
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
-                value={this.props.displayPlayerOne}
-                onChange={(event, index, value) =>
-                  this.props.changePlayerOne(value)
-                }
               >
                 {playersData.map(player => (
                   <MenuItem
                     value={playersData.indexOf(player) + 1}
                     primaryText={player.name}
+                    key={playersData.indexOf(player)}
                   />
                 ))}
               </SelectField>
@@ -173,15 +170,12 @@ class Results extends Component {
                 floatingLabelText="Joueur 2"
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
-                value={this.props.displayPlayerTwo}
-                onChange={(event, index, value) =>
-                  this.props.changePlayerTwo(value)
-                }
               >
                 {playersData.map(player => (
                   <MenuItem
                     value={playersData.indexOf(player) + 1}
                     primaryText={player.name}
+                    key={playersData.indexOf(player) + playersData.length}
                   />
                 ))}
               </SelectField>
@@ -191,15 +185,12 @@ class Results extends Component {
                 floatingLabelText="Equipe 1"
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
-                value={this.props.displayTeamOne}
-                onChange={(event, index, value) =>
-                  this.props.changeTeamOne(value)
-                }
               >
                 {teamsData.map(team => (
                   <MenuItem
                     value={teamsData.indexOf(team) + 1}
                     primaryText={team.name}
+                    key={teamsData.indexOf(team) + 2 * playersData.length}
                   />
                 ))}
               </SelectField>
@@ -208,15 +199,16 @@ class Results extends Component {
                 floatingLabelText="Equipe 2"
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
-                value={this.props.displayTeamTwo}
-                onChange={(event, index, value) =>
-                  this.props.changeTeamTwo(value)
-                }
               >
                 {teamsData.map(team => (
                   <MenuItem
                     value={teamsData.indexOf(team) + 1}
                     primaryText={team.name}
+                    key={
+                      teamsData.indexOf(team) +
+                      teamsData.length +
+                      2 * playersData.length
+                    }
                   />
                 ))}
               </SelectField>
@@ -226,14 +218,12 @@ class Results extends Component {
                 floatingLabelText="Score joueur 1"
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
-                onChange={(event, newValue) => this.props.changeScoreOne(event)}
               />
               <Chip style={styles.chip}>Score</Chip>
               <TextField
                 floatingLabelText="Score joueur 2"
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
-                onChange={(event, newValue) => this.props.changeScoreTwo(event)}
               />
             </div>
             <div className="select_field">

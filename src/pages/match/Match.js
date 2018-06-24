@@ -28,13 +28,6 @@ class Match extends Component {
       }
     };
 
-    //let player_one = {this.props.displayPlayerOne};
-    //let player_two = {this.props.displayPlayerTwo};
-    //let team_one = {this.props.displayTeamOne};
-    //let team_two = {this.props.displayTeamTwo};
-    //let score_one = this.refs.scoreOne.input.value;
-    //let score_two = this.refs.scoreTwo.input.value;
-
     return (
       <div className="match_container">
         <div className="new_container">
@@ -57,6 +50,7 @@ class Match extends Component {
                 <MenuItem
                   value={playersData.indexOf(player) + 1}
                   primaryText={player.name}
+                  key={playersData.indexOf(player)}
                 />
               ))}
             </SelectField>
@@ -74,6 +68,7 @@ class Match extends Component {
                 <MenuItem
                   value={playersData.indexOf(player) + 1}
                   primaryText={player.name}
+                  key={playersData.indexOf(player) + playersData.length}
                 />
               ))}
             </SelectField>
@@ -92,6 +87,7 @@ class Match extends Component {
                 <MenuItem
                   value={teamsData.indexOf(team) + 1}
                   primaryText={team.name}
+                  key={teamsData.indexOf(team) + 2 * playersData.length}
                 />
               ))}
             </SelectField>
@@ -109,6 +105,11 @@ class Match extends Component {
                 <MenuItem
                   value={teamsData.indexOf(team) + 1}
                   primaryText={team.name}
+                  key={
+                    teamsData.indexOf(team) +
+                    teamsData.length +
+                    2 * playersData.length
+                  }
                 />
               ))}
             </SelectField>

@@ -81,15 +81,17 @@ class Home extends Component {
           <div id="general" style={{ marginBottom: "1vh" }}>
             <Table style={styles.table}>
               <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-                <h4
-                  style={{
-                    color: "white",
-                    marginBottom: "0",
-                    marginLeft: "1vw"
-                  }}
-                >
-                  Général
-                </h4>
+                <TableRow>
+                  <TableHeaderColumn
+                    style={{
+                      color: "white",
+                      fontSize: "1.3em",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Général
+                  </TableHeaderColumn>
+                </TableRow>
                 <TableRow>
                   <TableHeaderColumn>Pos.</TableHeaderColumn>
                   <TableHeaderColumn style={styles.column}>
@@ -100,7 +102,10 @@ class Home extends Component {
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
                 {playersData.map(player => (
-                  <TableRow style={styles.tableRow}>
+                  <TableRow
+                    style={styles.tableRow}
+                    key={playersData.indexOf(player)}
+                  >
                     <TableRowColumn>
                       {playersData.indexOf(player) + 1}
                     </TableRowColumn>
@@ -116,15 +121,17 @@ class Home extends Component {
           <div id="difference" style={{ marginBottom: "1vh" }}>
             <Table style={styles.table}>
               <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-                <h4
-                  style={{
-                    color: "white",
-                    marginBottom: "0",
-                    marginLeft: "1vw"
-                  }}
-                >
-                  Différence
-                </h4>
+                <TableRow>
+                  <TableHeaderColumn
+                    style={{
+                      color: "white",
+                      fontSize: "1.3em",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Différence
+                  </TableHeaderColumn>
+                </TableRow>
                 <TableRow>
                   <TableHeaderColumn>Pos.</TableHeaderColumn>
                   <TableHeaderColumn style={styles.column}>
@@ -135,7 +142,10 @@ class Home extends Component {
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
                 {playersData.map(player => (
-                  <TableRow style={styles.tableRow}>
+                  <TableRow
+                    style={styles.tableRow}
+                    key={playersData.indexOf(player) + playersData.length}
+                  >
                     <TableRowColumn>
                       {playersData.indexOf(player) + 1}
                     </TableRowColumn>
@@ -151,15 +161,17 @@ class Home extends Component {
           <div id="attaque" style={{ marginBottom: "1vh" }}>
             <Table style={styles.table}>
               <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-                <h4
-                  style={{
-                    color: "white",
-                    marginBottom: "0",
-                    marginLeft: "1vw"
-                  }}
-                >
-                  Attaque
-                </h4>
+                <TableRow>
+                  <TableHeaderColumn
+                    style={{
+                      color: "white",
+                      fontSize: "1.3em",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Attaque
+                  </TableHeaderColumn>
+                </TableRow>
                 <TableRow>
                   <TableHeaderColumn>Pos.</TableHeaderColumn>
                   <TableHeaderColumn style={styles.column}>
@@ -170,7 +182,10 @@ class Home extends Component {
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
                 {playersData.map(player => (
-                  <TableRow style={styles.tableRow}>
+                  <TableRow
+                    style={styles.tableRow}
+                    key={playersData.indexOf(player) + 2 * playersData.length}
+                  >
                     <TableRowColumn>
                       {playersData.indexOf(player) + 1}
                     </TableRowColumn>
