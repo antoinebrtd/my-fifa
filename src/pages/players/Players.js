@@ -12,14 +12,6 @@ import {
 import SwipeableViews from "react-swipeable-views";
 
 class Players extends Component {
-  componentDidMount() {
-    fetch("http://127.0.0.1:8000/players/display/3", {
-      method: "GET"
-    })
-      .then(data => data.json())
-      .then(player => console.log(player));
-  }
-
   render() {
     const styles = {
       slide: {

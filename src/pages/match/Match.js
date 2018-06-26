@@ -8,13 +8,33 @@ import {
   ToolbarGroup,
   ToolbarTitle,
   MenuItem,
-  Chip
+  Chip,
+  Snackbar
 } from "material-ui";
 import DoneIcon from "material-ui-icons/Done";
-
+import * as moment from "moment";
 import { playersData, teamsData } from "../../redux/entities/Data";
 
 class Match extends Component {
+  addMatch = () => {
+    fetch("http://127.0.0.1:8000/add/match", {
+      method: "POST",
+      body: JSON.stringify({
+        players: [this.props.displayPlayerOne, this.props.displayPlayerTwo],
+        teams: [this.props.displayTeamOne, this.props.displayTeamTwo],
+        score: [
+          Number(this.props.displayScoreOne),
+          Number(this.props.displayScoreTwo)
+        ],
+        date: moment().format()
+      })
+    })
+      .then(() => this.props.addingMatch())
+      .catch(function(error) {
+        console.log("Request failure: ", error);
+      });
+  };
+
   render() {
     const styles = {
       chip: {
@@ -42,8 +62,8 @@ class Match extends Component {
               floatingLabelStyle={{ color: "white" }}
               style={styles.selectField}
               value={this.props.displayPlayerOne}
-              onChange={(event, index, value) =>
-                this.props.changePlayerOne(value)
+              onChange={(event, index, value, number = "one") =>
+                this.props.changePlayer(value, number)
               }
             >
               {playersData.map(player => (
@@ -60,8 +80,8 @@ class Match extends Component {
               floatingLabelStyle={{ color: "white" }}
               style={styles.selectField}
               value={this.props.displayPlayerTwo}
-              onChange={(event, index, value) =>
-                this.props.changePlayerTwo(value)
+              onChange={(event, index, value, number = "two") =>
+                this.props.changePlayer(value, number)
               }
             >
               {playersData.map(player => (
@@ -79,8 +99,8 @@ class Match extends Component {
               floatingLabelStyle={{ color: "white" }}
               style={styles.selectField}
               value={this.props.displayTeamOne}
-              onChange={(event, index, value) =>
-                this.props.changeTeamOne(value)
+              onChange={(event, index, value, number = "one") =>
+                this.props.changeTeam(value, number)
               }
             >
               {teamsData.map(team => (
@@ -97,8 +117,8 @@ class Match extends Component {
               floatingLabelStyle={{ color: "white" }}
               style={styles.selectField}
               value={this.props.displayTeamTwo}
-              onChange={(event, index, value) =>
-                this.props.changeTeamTwo(value)
+              onChange={(event, index, value, number = "two") =>
+                this.props.changeTeam(value, number)
               }
             >
               {teamsData.map(team => (
@@ -119,27 +139,37 @@ class Match extends Component {
               ref="scoreOne"
               floatingLabelText="Score joueur 1"
               floatingLabelStyle={{ color: "white" }}
+              value={this.props.displayScoreOne}
               style={styles.selectField}
-              onChange={(event, newValue) => this.props.changeScoreOne(event)}
+              onChange={(event, newValue, number = "one") =>
+                this.props.changeScore(event, number)
+              }
             />
             <Chip style={styles.chip}>Score</Chip>
             <TextField
               ref="scoreTwo"
               floatingLabelText="Score joueur 2"
               floatingLabelStyle={{ color: "white" }}
+              value={this.props.displayScoreTwo}
               style={styles.selectField}
-              onChange={(event, newValue) => this.props.changeScoreTwo(event)}
+              onChange={(event, newValue, number = "two") =>
+                this.props.changeScore(event, number)
+              }
             />
           </div>
           <RaisedButton
             label="Ajouter ce match"
             backgroundColor="#fcd21c"
             icon={<DoneIcon className="muidocs-icon-search" />}
-            onClick={(score_one, score_two) =>
-              this.props.addingMatch(score_one, score_two)
-            }
+            onClick={() => this.addMatch()}
           />
         </div>
+        <Snackbar
+          open={this.props.displaySnackbar}
+          message="Votre match a bien été ajouté"
+          autoHideDuration={4000}
+          onRequestClose={this.props.closeSnackbar}
+        />
       </div>
     );
   }

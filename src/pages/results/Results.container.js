@@ -2,13 +2,13 @@ import { connect } from "react-redux";
 import {
   startFetchStrikingMatch,
   startFetchRecentMatch
-} from "../../redux/entities/fetchMatch/fetchMatch.actions";
+} from "../../redux/entities/fetchMatch/FetchMatch.actions";
 import {
   selectRecentMatchesToDisplay,
   selectStrikingMatchesToDisplay,
   selectItemRecent,
   selectItemStriking
-} from "../../redux/entities/fetchMatch/fetchMatch.selectors";
+} from "../../redux/entities/fetchMatch/FetchMatch.selectors";
 import Results from "./Results";
 
 const mapStateToProps = state => ({

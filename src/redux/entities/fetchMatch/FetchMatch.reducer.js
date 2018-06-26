@@ -1,4 +1,4 @@
-import { fetchMatchActionTypes } from "./fetchMatch.actions";
+import { fetchMatchActionTypes } from "./FetchMatch.actions";
 import {
   selectDayMatches,
   selectWeekMatches,
@@ -6,7 +6,7 @@ import {
   selectHighMatches,
   selectGapMatches,
   selectLowMatches
-} from "./fetchMatch.selectors";
+} from "./FetchMatch.selectors";
 import * as moment from "moment";
 
 const defaultState = {
