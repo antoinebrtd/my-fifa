@@ -16,6 +16,30 @@ import { Link } from "react-router-dom";
 import { playersData, matchesData, teamsData } from "../../redux/entities/Data";
 
 class Home extends Component {
+  componentDidMount() {
+    fetch("http://127.0.0.1:8000/players", {
+      method: "GET"
+    })
+      .then(players => players.json())
+      .then(players => {
+        let players_array = [];
+        for (let i = 0; i < players.length; i++) {
+          players_array.push(players[i][i + 1]);
+        }
+        this.props.fetchingPlayers(players_array);
+        console.log(this.props.players);
+        matchesData.map(match =>
+          console.log(
+            this.props.players.find(player => player.id === match.players[0])
+              .name
+          )
+        );
+      })
+      .catch(function(error) {
+        console.log("Request failure: ", error);
+      });
+  }
+
   render() {
     const styles = {
       root: {
