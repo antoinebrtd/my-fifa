@@ -24,17 +24,23 @@ class Home extends Component {
       .then(players => {
         let players_array = [];
         for (let i = 0; i < players.length; i++) {
-          players_array.push(players[i][i + 1]);
+          players_array.push(players[i][0]);
         }
         this.props.fetchingPlayers(players_array);
-        console.log(this.props.players);
-        matchesData.map(match =>
-          console.log(
-            this.props.players.find(player => player.id === match.players[0])
-              .name
-          )
-        );
       })
+      .then(
+        fetch("http://127.0.0.1:8000/teams", {
+          method: "GET"
+        })
+          .then(teams => teams.json())
+          .then(teams => {
+            let teams_array = [];
+            for (let i = 0; i < teams.length; i++) {
+              teams_array.push(teams[i][0]);
+            }
+            this.props.fetchingTeams(teams_array);
+          })
+      )
       .catch(function(error) {
         console.log("Request failure: ", error);
       });
