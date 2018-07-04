@@ -12,44 +12,44 @@ import * as moment from "moment";
 const defaultState = {
   matches: [
     {
-      id: 0,
-      players: [0, 1],
-      teams: [0, 1],
+      id: 1,
+      players: [1, 2],
+      teams: [1, 2],
       score: [3, 1],
       date: moment("2018-06-17T23:59:59.999+02:00")
     },
     {
-      id: 1,
-      players: [0, 2],
-      teams: [2, 3],
+      id: 2,
+      players: [1, 3],
+      teams: [3, 4],
       score: [3, 4],
       date: moment("2018-06-24T00:00:00.001+02:00")
     },
     {
-      id: 2,
-      players: [1, 2],
-      teams: [4, 5],
+      id: 3,
+      players: [2, 3],
+      teams: [5, 6],
       score: [3, 2],
       date: moment("2018-06-19T18:57:56.431+02:00")
     },
     {
-      id: 3,
-      players: [1, 0],
-      teams: [1, 5],
+      id: 4,
+      players: [2, 1],
+      teams: [2, 6],
       score: [3, 2],
       date: moment("2018-06-18T10:23:56.611+02:00")
     },
     {
-      id: 4,
-      players: [2, 0],
-      teams: [2, 5],
+      id: 5,
+      players: [3, 1],
+      teams: [3, 6],
       score: [1, 4],
       date: moment("2018-06-17T23:59:59.998+02:00")
     },
     {
-      id: 5,
-      players: [1, 2],
-      teams: [1, 0],
+      id: 6,
+      players: [2, 3],
+      teams: [2, 1],
       score: [1, 0],
       date: moment("2018-03-02T18:03:09.007+02:00")
     }

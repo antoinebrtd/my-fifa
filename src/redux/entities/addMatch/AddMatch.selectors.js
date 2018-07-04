@@ -31,12 +31,4 @@ export const selectScoreToDisplay = (state, number) => {
   }
 };
 
-export const selectTeamOneToPost = state => state.match.team_one;
-
-export const selectTeamTwoToPost = state => state.match.team_two;
-
-export const selectScoreOneToPost = state => state.match.score_one;
-
-export const selectScoreTwoToPost = state => state.match.score_two;
-
 export const selectSnackbarState = state => state.addMatch.display.snackbar;

@@ -103,7 +103,7 @@ const addMatchReducer = (state = defaultState, action) => {
         ...state,
         display: {
           ...state.display,
-          snackbar: true
+          snackbar: false
         }
       };
     default:

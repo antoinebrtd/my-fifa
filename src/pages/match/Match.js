@@ -17,7 +17,7 @@ import { playersData, teamsData } from "../../redux/entities/Data";
 
 class Match extends Component {
   addMatch = () => {
-    fetch("http://127.0.0.1:8000/add/match", {
+    fetch("http://127.0.0.1:8000/matches", {
       method: "POST",
       body: JSON.stringify({
         players: [this.props.displayPlayerOne, this.props.displayPlayerTwo],
@@ -168,7 +168,7 @@ class Match extends Component {
           open={this.props.displaySnackbar}
           message="Votre match a bien été ajouté"
           autoHideDuration={4000}
-          onRequestClose={this.props.closeSnackbar}
+          onRequestClose={() => this.props.closingSnackbar()}
         />
       </div>
     );
