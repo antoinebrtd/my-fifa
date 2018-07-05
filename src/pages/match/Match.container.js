@@ -7,11 +7,23 @@ import {
   closeSnackbar
 } from "../../redux/entities/addMatch/AddMatch.actions";
 import {
+  openDialog,
+  closeDialog,
+  setTeam,
+  addTeam,
+  closeTeamSnackbar
+} from "../../redux/entities/addTeam/AddTeam.actions";
+import {
   selectPlayerToDisplay,
   selectTeamToDisplay,
   selectScoreToDisplay,
   selectSnackbarState
 } from "../../redux/entities/addMatch/AddMatch.selectors";
+import {
+  selectNewTeamToDisplay,
+  selectTeamSnackbarState,
+  selectDialogState
+} from "../../redux/entities/addTeam/AddTeam.selectors";
 import Match from "./Match";
 
 const mapStateToProps = state => ({
@@ -21,7 +33,10 @@ const mapStateToProps = state => ({
   displayTeamTwo: selectTeamToDisplay(state, "two"),
   displayScoreOne: selectScoreToDisplay(state, "one"),
   displayScoreTwo: selectScoreToDisplay(state, "two"),
-  displaySnackbar: selectSnackbarState(state)
+  displaySnackbar: selectSnackbarState(state),
+  displayTeam: selectNewTeamToDisplay(state),
+  displayDialog: selectDialogState(state),
+  displayTeamSnackbar: selectTeamSnackbarState(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -29,7 +44,12 @@ const mapDispatchToProps = dispatch => ({
   changeTeam: (value, number) => dispatch(chooseTeam(value, number)),
   changeScore: (event, number) => dispatch(setScore(event, number)),
   addingMatch: () => dispatch(addMatch()),
-  closingSnackbar: () => dispatch(closeSnackbar())
+  closingSnackbar: () => dispatch(closeSnackbar()),
+  closingTeamSnackbar: () => dispatch(closeTeamSnackbar()),
+  openingDialog: () => dispatch(openDialog()),
+  closingDialog: () => dispatch(closeDialog()),
+  changeNewTeam: event => dispatch(setTeam(event)),
+  addingTeam: () => dispatch(addTeam())
 });
 
 export default connect(
