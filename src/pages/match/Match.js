@@ -9,9 +9,12 @@ import {
   ToolbarTitle,
   MenuItem,
   Chip,
-  Snackbar
+  Snackbar,
+  FlatButton,
+  Dialog
 } from "material-ui";
 import DoneIcon from "material-ui-icons/Done";
+import AddIcon from "material-ui-icons/GroupAdd";
 import * as moment from "moment";
 import { playersData, teamsData } from "../../redux/entities/Data";
 
@@ -47,6 +50,20 @@ class Match extends Component {
         width: "8vw"
       }
     };
+
+    const actions = [
+      <FlatButton
+        label="Annuler"
+        primary={true}
+        onClick={() => this.props.closingDialog()}
+      />,
+      <FlatButton
+        label="Ajouter"
+        primary={true}
+        keyboardFocused={true}
+        onClick={() => this.props.addingTeam()}
+      />
+    ];
 
     return (
       <div className="match_container">
@@ -110,6 +127,12 @@ class Match extends Component {
                   key={teamsData.indexOf(team) + 2 * playersData.length}
                 />
               ))}
+              <MenuItem
+                value={teamsData.length + 1}
+                primaryText={"Ajouter"}
+                leftIcon={<AddIcon className="muidocs-icon-group_add" />}
+                onClick={() => this.props.openingDialog()}
+              />
             </SelectField>
             <Chip style={styles.chip}>Equipes</Chip>
             <SelectField
@@ -132,6 +155,12 @@ class Match extends Component {
                   }
                 />
               ))}
+              <MenuItem
+                value={teamsData.length + 1}
+                primaryText={"Ajouter"}
+                leftIcon={<AddIcon className="muidocs-icon-group_add" />}
+                onClick={() => this.props.openingDialog()}
+              />
             </SelectField>
           </div>
           <div className="select_field">
@@ -170,6 +199,26 @@ class Match extends Component {
           autoHideDuration={4000}
           onRequestClose={() => this.props.closingSnackbar()}
         />
+        <Snackbar
+          open={this.props.displayTeamSnackbar}
+          message="Votre équipe a bien été ajoutée"
+          autoHideDuration={4000}
+          onRequestClose={() => this.props.closingTeamSnackbar()}
+        />
+        <Dialog
+          title="Ajouter une nouvelle équipe"
+          actions={actions}
+          modal={false}
+          open={this.props.displayDialog}
+          onRequestClose={() => this.props.closingDialog()}
+        >
+          Open a Date Picker dialog from within a dialog.
+          <TextField
+            floatingLabelText="Equipe à ajouter"
+            value={this.props.displayTeam}
+            onChange={(event, newValue) => this.props.changeNewTeam(event)}
+          />
+        </Dialog>
       </div>
     );
   }
