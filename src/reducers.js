@@ -6,6 +6,7 @@ import fetchMatchReducer from "./redux/entities/fetchMatch/FetchMatch.reducer";
 import bottomNavReducer from "./redux/ui/bottomNav/BottomNav.reducer";
 import fetchPlayersReducer from "./redux/entities/fetchPlayers/FetchPlayers.reducer";
 import fetchTeamsReducer from "./redux/entities/fetchTeams/FetchTeams.reducer";
+import addTeamReducer from "./redux/entities/addTeam/AddTeam.reducer";
 
 const rootReducer = combineReducers({
   header: headerReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   fetchMatch: fetchMatchReducer,
   bottomNav: bottomNavReducer,
   fetchPlayers: fetchPlayersReducer,
-  fetchTeams: fetchTeamsReducer
+  fetchTeams: fetchTeamsReducer,
+  addTeam: addTeamReducer
 });
 
 export default rootReducer;
