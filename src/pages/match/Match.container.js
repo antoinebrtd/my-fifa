@@ -24,6 +24,7 @@ import {
   selectTeamSnackbarState,
   selectDialogState
 } from "../../redux/entities/addTeam/AddTeam.selectors";
+import { fetchTeams } from "../../redux/entities/fetchTeams/FetchTeams.actions";
 import Match from "./Match";
 
 const mapStateToProps = state => ({
@@ -49,7 +50,8 @@ const mapDispatchToProps = dispatch => ({
   openingDialog: () => dispatch(openDialog()),
   closingDialog: () => dispatch(closeDialog()),
   changeNewTeam: event => dispatch(setTeam(event)),
-  addingTeam: () => dispatch(addTeam())
+  addingTeam: () => dispatch(addTeam()),
+  fetchingTeams: teams => dispatch(fetchTeams(teams))
 });
 
 export default connect(
