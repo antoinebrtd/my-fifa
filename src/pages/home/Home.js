@@ -131,13 +131,13 @@ class Home extends Component {
                 </TableRow>
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
-                {playersData.map(player => (
+                {this.props.players.map(player => (
                   <TableRow
                     style={styles.tableRow}
-                    key={playersData.indexOf(player)}
+                    key={this.props.players.indexOf(player)}
                   >
                     <TableRowColumn>
-                      {playersData.indexOf(player) + 1}
+                      {this.props.players.indexOf(player) + 1}
                     </TableRowColumn>
                     <TableRowColumn style={styles.column}>
                       {player.name}
@@ -171,13 +171,16 @@ class Home extends Component {
                 </TableRow>
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
-                {playersData.map(player => (
+                {this.props.players.map(player => (
                   <TableRow
                     style={styles.tableRow}
-                    key={playersData.indexOf(player) + playersData.length}
+                    key={
+                      this.props.players.indexOf(player) +
+                      this.props.players.length
+                    }
                   >
                     <TableRowColumn>
-                      {playersData.indexOf(player) + 1}
+                      {this.props.players.indexOf(player) + 1}
                     </TableRowColumn>
                     <TableRowColumn style={styles.column}>
                       {player.name}
@@ -211,13 +214,16 @@ class Home extends Component {
                 </TableRow>
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
-                {playersData.map(player => (
+                {this.props.players.map(player => (
                   <TableRow
                     style={styles.tableRow}
-                    key={playersData.indexOf(player) + 2 * playersData.length}
+                    key={
+                      this.props.players.indexOf(player) +
+                      2 * this.props.players.length
+                    }
                   >
                     <TableRowColumn>
-                      {playersData.indexOf(player) + 1}
+                      {this.props.players.indexOf(player) + 1}
                     </TableRowColumn>
                     <TableRowColumn style={styles.column}>
                       {player.name}
