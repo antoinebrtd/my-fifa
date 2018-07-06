@@ -38,6 +38,32 @@ class Match extends Component {
       });
   };
 
+  addTeam = () => {
+    fetch("http://127.0.0.1:8000/teams", {
+      method: "POST",
+      body: JSON.stringify({
+        name: this.props.displayTeam
+      })
+    })
+      .then(() => this.props.addingTeam())
+      .then(
+        fetch("http://127.0.0.1:8000/teams", {
+          method: "GET"
+        })
+          .then(teams => teams.json())
+          .then(teams => {
+            let teams_array = [];
+            for (let i = 0; i < teams.length; i++) {
+              teams_array.push(teams[i][0]);
+            }
+            this.props.fetchingTeams(teams_array);
+          })
+      )
+      .catch(function(error) {
+        console.log("Request failure: ", error);
+      });
+  };
+
   render() {
     const styles = {
       chip: {
@@ -61,7 +87,7 @@ class Match extends Component {
         label="Ajouter"
         primary={true}
         keyboardFocused={true}
-        onClick={() => this.props.addingTeam()}
+        onClick={() => this.addTeam()}
       />
     ];
 
@@ -212,7 +238,7 @@ class Match extends Component {
           open={this.props.displayDialog}
           onRequestClose={() => this.props.closingDialog()}
         >
-          Open a Date Picker dialog from within a dialog.
+          Veuillez rentrer le nom de la nouvelle équipe:
           <TextField
             floatingLabelText="Equipe à ajouter"
             value={this.props.displayTeam}
