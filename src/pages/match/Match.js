@@ -16,7 +16,6 @@ import {
 import DoneIcon from "material-ui-icons/Done";
 import AddIcon from "material-ui-icons/GroupAdd";
 import * as moment from "moment";
-import { playersData, teamsData } from "../../redux/entities/Data";
 
 class Match extends Component {
   addMatch = () => {
@@ -33,6 +32,19 @@ class Match extends Component {
       })
     })
       .then(() => this.props.addingMatch())
+      .then(
+        fetch("http://127.0.0.1:8000/players", {
+          method: "GET"
+        })
+          .then(players => players.json())
+          .then(players => {
+            let players_array = [];
+            for (let i = 0; i < players.length; i++) {
+              players_array.push(players[i][0]);
+            }
+            this.props.fetchingPlayers(players_array);
+          })
+      )
       .catch(function(error) {
         console.log("Request failure: ", error);
       });
@@ -111,9 +123,9 @@ class Match extends Component {
             >
               {this.props.players.map(player => (
                 <MenuItem
-                  value={this.props.players.indexOf(player) + 1}
+                  value={player.id}
                   primaryText={player.name}
-                  key={this.props.players.indexOf(player)}
+                  key={player.id}
                 />
               ))}
             </SelectField>
@@ -129,12 +141,9 @@ class Match extends Component {
             >
               {this.props.players.map(player => (
                 <MenuItem
-                  value={this.props.players.indexOf(player) + 1}
+                  value={player.id}
                   primaryText={player.name}
-                  key={
-                    this.props.players.indexOf(player) +
-                    this.props.players.length
-                  }
+                  key={player.id}
                 />
               ))}
             </SelectField>
@@ -151,11 +160,9 @@ class Match extends Component {
             >
               {this.props.teams.map(team => (
                 <MenuItem
-                  value={this.props.teams.indexOf(team) + 1}
+                  value={team.id}
                   primaryText={team.name}
-                  key={
-                    this.props.teams.indexOf(team) + 2 * this.props.teams.length
-                  }
+                  key={team.id}
                 />
               ))}
               <MenuItem
@@ -177,13 +184,9 @@ class Match extends Component {
             >
               {this.props.teams.map(team => (
                 <MenuItem
-                  value={this.props.teams.indexOf(team) + 1}
+                  value={team.id}
                   primaryText={team.name}
-                  key={
-                    this.props.teams.indexOf(team) +
-                    this.props.teams.length +
-                    2 * this.props.teams.length
-                  }
+                  key={team.id}
                 />
               ))}
               <MenuItem

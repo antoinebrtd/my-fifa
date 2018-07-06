@@ -25,6 +25,7 @@ import {
   selectDialogState
 } from "../../redux/entities/addTeam/AddTeam.selectors";
 import { fetchTeams } from "../../redux/entities/fetchTeams/FetchTeams.actions";
+import { fetchPlayers } from "../../redux/entities/fetchPlayers/FetchPlayers.actions";
 import { selectTeams } from "../../redux/entities/fetchTeams/FetchTeams.selectors";
 import { selectPlayers } from "../../redux/entities/fetchPlayers/FetchPlayers.selectors";
 import Match from "./Match";
@@ -55,7 +56,8 @@ const mapDispatchToProps = dispatch => ({
   closingDialog: () => dispatch(closeDialog()),
   changeNewTeam: event => dispatch(setTeam(event)),
   addingTeam: () => dispatch(addTeam()),
-  fetchingTeams: teams => dispatch(fetchTeams(teams))
+  fetchingTeams: teams => dispatch(fetchTeams(teams)),
+  fetchingPlayers: players => dispatch(fetchPlayers(players))
 });
 
 export default connect(

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "./Home.css";
-import { RaisedButton } from "material-ui";
 import PeopleIcon from "material-ui-icons/People";
-import { GridList, Subheader, GridTile } from "material-ui";
 import {
+  RaisedButton,
+  GridList,
+  Subheader,
+  GridTile,
   Table,
   TableBody,
   TableHeader,
@@ -132,10 +134,7 @@ class Home extends Component {
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
                 {this.props.players.map(player => (
-                  <TableRow
-                    style={styles.tableRow}
-                    key={this.props.players.indexOf(player)}
-                  >
+                  <TableRow style={styles.tableRow} key={player.id}>
                     <TableRowColumn>
                       {this.props.players.indexOf(player) + 1}
                     </TableRowColumn>
@@ -172,13 +171,7 @@ class Home extends Component {
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
                 {this.props.players.map(player => (
-                  <TableRow
-                    style={styles.tableRow}
-                    key={
-                      this.props.players.indexOf(player) +
-                      this.props.players.length
-                    }
-                  >
+                  <TableRow style={styles.tableRow} key={player.id}>
                     <TableRowColumn>
                       {this.props.players.indexOf(player) + 1}
                     </TableRowColumn>
@@ -215,13 +208,7 @@ class Home extends Component {
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
                 {this.props.players.map(player => (
-                  <TableRow
-                    style={styles.tableRow}
-                    key={
-                      this.props.players.indexOf(player) +
-                      2 * this.props.players.length
-                    }
-                  >
+                  <TableRow style={styles.tableRow} key={player.id}>
                     <TableRowColumn>
                       {this.props.players.indexOf(player) + 1}
                     </TableRowColumn>
