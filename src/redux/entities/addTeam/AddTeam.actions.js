@@ -1,5 +1,3 @@
-import addMatchReducer from "../addMatch/AddMatch.reducer";
-
 export const addTeamActionTypes = {
   DISPLAY: {
     OPEN_DIALOG: "OPEN.DIALOG",

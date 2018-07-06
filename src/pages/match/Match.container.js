@@ -25,6 +25,8 @@ import {
   selectDialogState
 } from "../../redux/entities/addTeam/AddTeam.selectors";
 import { fetchTeams } from "../../redux/entities/fetchTeams/FetchTeams.actions";
+import { selectTeams } from "../../redux/entities/fetchTeams/FetchTeams.selectors";
+import { selectPlayers } from "../../redux/entities/fetchPlayers/FetchPlayers.selectors";
 import Match from "./Match";
 
 const mapStateToProps = state => ({
@@ -37,7 +39,9 @@ const mapStateToProps = state => ({
   displaySnackbar: selectSnackbarState(state),
   displayTeam: selectNewTeamToDisplay(state),
   displayDialog: selectDialogState(state),
-  displayTeamSnackbar: selectTeamSnackbarState(state)
+  displayTeamSnackbar: selectTeamSnackbarState(state),
+  players: selectPlayers(state),
+  teams: selectTeams(state)
 });
 
 const mapDispatchToProps = dispatch => ({

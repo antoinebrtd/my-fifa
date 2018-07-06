@@ -109,11 +109,11 @@ class Match extends Component {
                 this.props.changePlayer(value, number)
               }
             >
-              {playersData.map(player => (
+              {this.props.players.map(player => (
                 <MenuItem
-                  value={playersData.indexOf(player) + 1}
+                  value={this.props.players.indexOf(player) + 1}
                   primaryText={player.name}
-                  key={playersData.indexOf(player)}
+                  key={this.props.players.indexOf(player)}
                 />
               ))}
             </SelectField>
@@ -127,11 +127,14 @@ class Match extends Component {
                 this.props.changePlayer(value, number)
               }
             >
-              {playersData.map(player => (
+              {this.props.players.map(player => (
                 <MenuItem
-                  value={playersData.indexOf(player) + 1}
+                  value={this.props.players.indexOf(player) + 1}
                   primaryText={player.name}
-                  key={playersData.indexOf(player) + playersData.length}
+                  key={
+                    this.props.players.indexOf(player) +
+                    this.props.players.length
+                  }
                 />
               ))}
             </SelectField>
@@ -146,15 +149,17 @@ class Match extends Component {
                 this.props.changeTeam(value, number)
               }
             >
-              {teamsData.map(team => (
+              {this.props.teams.map(team => (
                 <MenuItem
-                  value={teamsData.indexOf(team) + 1}
+                  value={this.props.teams.indexOf(team) + 1}
                   primaryText={team.name}
-                  key={teamsData.indexOf(team) + 2 * playersData.length}
+                  key={
+                    this.props.teams.indexOf(team) + 2 * this.props.teams.length
+                  }
                 />
               ))}
               <MenuItem
-                value={teamsData.length + 1}
+                value={this.props.teams.length + 1}
                 primaryText={"Ajouter"}
                 leftIcon={<AddIcon className="muidocs-icon-group_add" />}
                 onClick={() => this.props.openingDialog()}
@@ -170,19 +175,19 @@ class Match extends Component {
                 this.props.changeTeam(value, number)
               }
             >
-              {teamsData.map(team => (
+              {this.props.teams.map(team => (
                 <MenuItem
-                  value={teamsData.indexOf(team) + 1}
+                  value={this.props.teams.indexOf(team) + 1}
                   primaryText={team.name}
                   key={
-                    teamsData.indexOf(team) +
-                    teamsData.length +
-                    2 * playersData.length
+                    this.props.teams.indexOf(team) +
+                    this.props.teams.length +
+                    2 * this.props.teams.length
                   }
                 />
               ))}
               <MenuItem
-                value={teamsData.length + 1}
+                value={this.props.teams.length + 1}
                 primaryText={"Ajouter"}
                 leftIcon={<AddIcon className="muidocs-icon-group_add" />}
                 onClick={() => this.props.openingDialog()}
