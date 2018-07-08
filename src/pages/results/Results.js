@@ -23,9 +23,26 @@ import SearchIcon from "material-ui-icons/Search";
 import { playersData, teamsData } from "../../redux/entities/Data";
 
 class Results extends Component {
+  fetchRecentMatches = value => {
+    fetch(`http://127.0.0.1:8000/matches/recent/${value}`, {
+      method: "GET"
+    })
+      .then(recent_matches => recent_matches.json())
+      .then(recent_matches => {
+        let recent_matches_array = [];
+        for (let i = 0; i < recent_matches.length; i++) {
+          recent_matches_array.push(recent_matches[i][0]);
+        }
+        this.props.fetchRecent(value, recent_matches_array);
+      })
+      .catch(function(error) {
+        console.log("Request failure: ", error);
+      });
+  };
+
   componentWillMount() {
-    this.props.fetchRecent(0);
-    this.props.fetchStriking(0);
+    this.fetchRecentMatches(this.props.displayItemRecent);
+    this.props.fetchStriking(this.props.displayItemStriking);
   }
 
   render() {
@@ -59,7 +76,7 @@ class Results extends Component {
                 <DropDownMenu
                   value={this.props.displayItemRecent}
                   onChange={(event, index, value) =>
-                    this.props.fetchRecent(value)
+                    this.fetchRecentMatches(value)
                   }
                 >
                   <MenuItem value={0} primaryText="Aujourd'hui" />

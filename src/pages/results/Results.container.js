@@ -19,7 +19,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchRecent: value => dispatch(startFetchRecentMatch(value)),
+  fetchRecent: (value, matches) =>
+    dispatch(startFetchRecentMatch(value, matches)),
   fetchStriking: value => dispatch(startFetchStrikingMatch(value))
 });
 
