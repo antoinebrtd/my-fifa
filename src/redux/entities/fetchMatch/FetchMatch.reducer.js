@@ -1,8 +1,5 @@
 import { fetchMatchActionTypes } from "./FetchMatch.actions";
 import {
-  selectDayMatches,
-  selectWeekMatches,
-  selectMonthMatches,
   selectHighMatches,
   selectGapMatches,
   selectLowMatches
@@ -101,7 +98,7 @@ const fetchMatchReducer = (state = defaultState, action) => {
         case 0:
           return {
             ...state,
-            recentMatchesToDisplay: selectDayMatches(state),
+            recentMatchesToDisplay: action.matches,
             display: {
               ...state.display,
               recent: action.index
@@ -110,7 +107,7 @@ const fetchMatchReducer = (state = defaultState, action) => {
         case 1:
           return {
             ...state,
-            recentMatchesToDisplay: selectWeekMatches(state),
+            recentMatchesToDisplay: action.matches,
             display: {
               ...state.display,
               recent: action.index
@@ -119,7 +116,7 @@ const fetchMatchReducer = (state = defaultState, action) => {
         case 2:
           return {
             ...state,
-            recentMatchesToDisplay: selectMonthMatches(state),
+            recentMatchesToDisplay: action.matches,
             display: {
               ...state.display,
               recent: action.index

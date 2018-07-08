@@ -7,9 +7,10 @@ export const fetchMatchActionTypes = {
   }
 };
 
-export const startFetchRecentMatch = value => ({
+export const startFetchRecentMatch = (value, matches) => ({
   type: fetchMatchActionTypes.FETCH.RECENT,
-  index: value
+  index: value,
+  matches: matches
 });
 
 export const startFetchStrikingMatch = value => ({
