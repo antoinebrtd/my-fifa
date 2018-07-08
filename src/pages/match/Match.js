@@ -15,7 +15,6 @@ import {
 } from "material-ui";
 import DoneIcon from "material-ui-icons/Done";
 import AddIcon from "material-ui-icons/GroupAdd";
-import * as moment from "moment";
 
 class Match extends Component {
   addMatch = () => {
@@ -27,8 +26,7 @@ class Match extends Component {
         score: [
           Number(this.props.displayScoreOne),
           Number(this.props.displayScoreTwo)
-        ],
-        date: moment().format()
+        ]
       })
     })
       .then(() => this.props.addingMatch())
@@ -43,6 +41,27 @@ class Match extends Component {
               players_array.push(players[i][0]);
             }
             this.props.fetchingPlayers(players_array);
+          })
+      )
+      .then(
+        fetch(
+          `http://127.0.0.1:8000/matches/recent/${
+            this.props.displayItemRecent
+          }`,
+          {
+            method: "GET"
+          }
+        )
+          .then(recent_matches => recent_matches.json())
+          .then(recent_matches => {
+            let recent_matches_array = [];
+            for (let i = 0; i < recent_matches.length; i++) {
+              recent_matches_array.push(recent_matches[i][0]);
+            }
+            this.props.fetchRecent(
+              this.props.displayItemRecent,
+              recent_matches_array
+            );
           })
       )
       .catch(function(error) {

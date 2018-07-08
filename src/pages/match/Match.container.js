@@ -28,6 +28,8 @@ import { fetchTeams } from "../../redux/entities/fetchTeams/FetchTeams.actions";
 import { fetchPlayers } from "../../redux/entities/fetchPlayers/FetchPlayers.actions";
 import { selectTeams } from "../../redux/entities/fetchTeams/FetchTeams.selectors";
 import { selectPlayers } from "../../redux/entities/fetchPlayers/FetchPlayers.selectors";
+import { startFetchRecentMatch } from "../../redux/entities/fetchMatch/FetchMatch.actions";
+import { selectItemRecent } from "../../redux/entities/fetchMatch/FetchMatch.selectors";
 import Match from "./Match";
 
 const mapStateToProps = state => ({
@@ -41,6 +43,7 @@ const mapStateToProps = state => ({
   displayTeam: selectNewTeamToDisplay(state),
   displayDialog: selectDialogState(state),
   displayTeamSnackbar: selectTeamSnackbarState(state),
+  displayItemRecent: selectItemRecent(state),
   players: selectPlayers(state),
   teams: selectTeams(state)
 });
@@ -57,7 +60,9 @@ const mapDispatchToProps = dispatch => ({
   changeNewTeam: event => dispatch(setTeam(event)),
   addingTeam: () => dispatch(addTeam()),
   fetchingTeams: teams => dispatch(fetchTeams(teams)),
-  fetchingPlayers: players => dispatch(fetchPlayers(players))
+  fetchingPlayers: players => dispatch(fetchPlayers(players)),
+  fetchRecent: (value, matches) =>
+    dispatch(startFetchRecentMatch(value, matches))
 });
 
 export default connect(
