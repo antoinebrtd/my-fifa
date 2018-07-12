@@ -13,9 +13,10 @@ export const startFetchRecentMatch = (value, matches) => ({
   matches: matches
 });
 
-export const startFetchStrikingMatch = value => ({
+export const startFetchStrikingMatch = (value, matches) => ({
   type: fetchMatchActionTypes.FETCH.STRIKING,
-  index: value
+  index: value,
+  matches: matches
 });
 
 export const errorFetchMatch = () => ({

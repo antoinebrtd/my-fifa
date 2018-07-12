@@ -35,17 +35,11 @@ class Match extends Component {
           method: "GET"
         })
           .then(players => players.json())
-          .then(players => {
-            let players_array = [];
-            for (let i = 0; i < players.length; i++) {
-              players_array.push(players[i][0]);
-            }
-            this.props.fetchingPlayers(players_array);
-          })
+          .then(players => this.props.fetchingPlayers(players))
       )
       .then(
         fetch(
-          `http://127.0.0.1:8000/matches/recent/${
+          `http://127.0.0.1:8000/matches?recent=${
             this.props.displayItemRecent
           }`,
           {
@@ -53,16 +47,26 @@ class Match extends Component {
           }
         )
           .then(recent_matches => recent_matches.json())
-          .then(recent_matches => {
-            let recent_matches_array = [];
-            for (let i = 0; i < recent_matches.length; i++) {
-              recent_matches_array.push(recent_matches[i][0]);
-            }
-            this.props.fetchRecent(
-              this.props.displayItemRecent,
-              recent_matches_array
-            );
-          })
+          .then(recent_matches =>
+            this.props.fetchRecent(this.props.displayItemRecent, recent_matches)
+          )
+      )
+      .then(
+        fetch(
+          `http://127.0.0.1:8000/matches?striking=${
+            this.props.displayItemStiking
+          }`,
+          {
+            method: "GET"
+          }
+        )
+          .then(striking_matches => striking_matches.json())
+          .then(striking_matches =>
+            this.props.fetchStriking(
+              this.props.displayItemStriking,
+              striking_matches
+            )
+          )
       )
       .catch(function(error) {
         console.log("Request failure: ", error);
@@ -82,13 +86,7 @@ class Match extends Component {
           method: "GET"
         })
           .then(teams => teams.json())
-          .then(teams => {
-            let teams_array = [];
-            for (let i = 0; i < teams.length; i++) {
-              teams_array.push(teams[i][0]);
-            }
-            this.props.fetchingTeams(teams_array);
-          })
+          .then(teams => this.props.fetchingTeams(teams))
       )
       .catch(function(error) {
         console.log("Request failure: ", error);

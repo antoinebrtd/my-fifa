@@ -20,21 +20,26 @@ import SortIcon from "material-ui-icons/Sort";
 import PeopleIcon from "material-ui-icons/People";
 import SearchIcon from "material-ui-icons/Search";
 
-import { playersData, teamsData } from "../../redux/entities/Data";
-
 class Results extends Component {
   fetchRecentMatches = value => {
-    fetch(`http://127.0.0.1:8000/matches/recent/${value}`, {
+    fetch(`http://127.0.0.1:8000/matches?recent=${value}`, {
       method: "GET"
     })
       .then(recent_matches => recent_matches.json())
-      .then(recent_matches => {
-        let recent_matches_array = [];
-        for (let i = 0; i < recent_matches.length; i++) {
-          recent_matches_array.push(recent_matches[i][0]);
-        }
-        this.props.fetchRecent(value, recent_matches_array);
-      })
+      .then(recent_matches => this.props.fetchRecent(value, recent_matches))
+      .catch(function(error) {
+        console.log("Request failure: ", error);
+      });
+  };
+
+  fetchStrikingMatches = value => {
+    fetch(`http://127.0.0.1:8000/matches?striking=${value}`, {
+      method: "GET"
+    })
+      .then(striking_matches => striking_matches.json())
+      .then(striking_matches =>
+        this.props.fetchStriking(value, striking_matches)
+      )
       .catch(function(error) {
         console.log("Request failure: ", error);
       });
@@ -42,7 +47,7 @@ class Results extends Component {
 
   componentWillMount() {
     this.fetchRecentMatches(this.props.displayItemRecent);
-    this.props.fetchStriking(this.props.displayItemStriking);
+    this.fetchStrikingMatches(this.props.displayItemStriking);
   }
 
   render() {
@@ -97,26 +102,36 @@ class Results extends Component {
                 </Link>
               </ToolbarGroup>
             </Toolbar>
-            <GridList cellHeight={200} cols={2.2} style={styles.gridList}>
-              {this.props.displayRecent.map(match => (
-                <GridTile
-                  key={match.id}
-                  title={`${
-                    playersData.find(player => player.id === match.players[0])
-                      .name
-                  } -  ${
-                    playersData.find(player => player.id === match.players[1])
-                      .name
-                  }`}
-                  subtitle={`${
-                    teamsData.find(team => team.id === match.teams[0]).name
-                  } ${match.score[0]} - ${match.score[1]} ${
-                    teamsData.find(team => team.id === match.teams[1]).name
-                  }`}
-                  titleBackground="linear-gradient(to top, rgba(0, 51, 102, 1) 0%, rgba(34, 66, 124, 0.5) 80%, rgba(34, 66, 124, 0) 100%)"
-                />
-              ))}
-            </GridList>
+            {this.props.teams.length > 0 &&
+              this.props.players.length > 0 && (
+                <GridList cellHeight={200} cols={2.2} style={styles.gridList}>
+                  {this.props.displayRecent.map(match => (
+                    <GridTile
+                      key={match.id}
+                      title={`${
+                        this.props.players.find(
+                          player => player.id === match.players[0]
+                        ).name
+                      } -  ${
+                        this.props.players.find(
+                          player => player.id === match.players[1]
+                        ).name
+                      }`}
+                      subtitle={`${
+                        this.props.teams.find(
+                          team => team.id === match.teams[0]
+                        ).name
+                      } ${match.score[0]} - ${match.score[1]} ${
+                        this.props.teams.find(
+                          team => team.id === match.teams[1]
+                        ).name
+                      }`}
+                      titleBackground="linear-gradient(to top, rgba(0, 51, 102, 1) 0%, rgba(34, 66, 124, 0.5) 80%, rgba(34, 66, 124, 0) 100%)"
+                      style={{ width: "12vw" }}
+                    />
+                  ))}
+                </GridList>
+              )}
           </div>
           <div className="striking_container">
             <Toolbar>
@@ -125,7 +140,7 @@ class Results extends Component {
                 <DropDownMenu
                   value={this.props.displayItemStriking}
                   onChange={(event, index, value) =>
-                    this.props.fetchStriking(value)
+                    this.fetchStrikingMatches(value)
                   }
                 >
                   <MenuItem value={0} primaryText="Haute-volée" />
@@ -142,24 +157,34 @@ class Results extends Component {
               </ToolbarGroup>
             </Toolbar>
             <GridList cellHeight={200} cols={2.2} style={styles.gridList}>
-              {this.props.displayStriking.map(match => (
-                <GridTile
-                  key={match.id}
-                  title={`${
-                    playersData.find(player => player.id === match.players[0])
-                      .name
-                  } -  ${
-                    playersData.find(player => player.id === match.players[1])
-                      .name
-                  }`}
-                  subtitle={`${
-                    teamsData.find(team => team.id === match.teams[0]).name
-                  } ${match.score[0]} - ${match.score[1]} ${
-                    teamsData.find(team => team.id === match.teams[1]).name
-                  }`}
-                  titleBackground="linear-gradient(to top, rgba(0, 51, 102, 1) 0%, rgba(34, 66, 124, 0.5) 80%, rgba(34, 66, 124, 0) 100%)"
-                />
-              ))}
+              {this.props.displayStriking.map(
+                match =>
+                  this.props.teams.length > 0 &&
+                  this.props.players.length > 0 && (
+                    <GridTile
+                      key={match.id}
+                      title={`${
+                        this.props.players.find(
+                          player => player.id === match.players[0]
+                        ).name
+                      } -  ${
+                        this.props.players.find(
+                          player => player.id === match.players[1]
+                        ).name
+                      }`}
+                      subtitle={`${
+                        this.props.teams.find(
+                          team => team.id === match.teams[0]
+                        ).name
+                      } ${match.score[0]} - ${match.score[1]} ${
+                        this.props.teams.find(
+                          team => team.id === match.teams[1]
+                        ).name
+                      }`}
+                      titleBackground="linear-gradient(to top, rgba(0, 51, 102, 1) 0%, rgba(34, 66, 124, 0.5) 80%, rgba(34, 66, 124, 0) 100%)"
+                    />
+                  )
+              )}
             </GridList>
           </div>
           <div className="search_container">
@@ -174,11 +199,11 @@ class Results extends Component {
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
               >
-                {playersData.map(player => (
+                {this.props.players.map(player => (
                   <MenuItem
-                    value={playersData.indexOf(player) + 1}
+                    value={this.props.players.id}
                     primaryText={player.name}
-                    key={playersData.indexOf(player)}
+                    key={player.id}
                   />
                 ))}
               </SelectField>
@@ -188,11 +213,11 @@ class Results extends Component {
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
               >
-                {playersData.map(player => (
+                {this.props.players.map(player => (
                   <MenuItem
-                    value={playersData.indexOf(player) + 1}
+                    value={this.props.players.id}
                     primaryText={player.name}
-                    key={playersData.indexOf(player) + playersData.length}
+                    key={player.id}
                   />
                 ))}
               </SelectField>
@@ -203,11 +228,11 @@ class Results extends Component {
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
               >
-                {teamsData.map(team => (
+                {this.props.teams.map(team => (
                   <MenuItem
-                    value={teamsData.indexOf(team) + 1}
+                    value={this.props.teams.id}
                     primaryText={team.name}
-                    key={teamsData.indexOf(team) + 2 * playersData.length}
+                    key={team.id}
                   />
                 ))}
               </SelectField>
@@ -217,15 +242,11 @@ class Results extends Component {
                 floatingLabelStyle={{ color: "white" }}
                 style={styles.selectField}
               >
-                {teamsData.map(team => (
+                {this.props.teams.map(team => (
                   <MenuItem
-                    value={teamsData.indexOf(team) + 1}
+                    value={this.props.teams.id}
                     primaryText={team.name}
-                    key={
-                      teamsData.indexOf(team) +
-                      teamsData.length +
-                      2 * playersData.length
-                    }
+                    key={team.id}
                   />
                 ))}
               </SelectField>

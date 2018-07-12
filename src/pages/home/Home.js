@@ -15,33 +15,26 @@ import {
 } from "material-ui";
 import { Link } from "react-router-dom";
 
-import { playersData, matchesData, teamsData } from "../../redux/entities/Data";
-
 class Home extends Component {
   componentDidMount() {
     fetch("http://127.0.0.1:8000/players", {
       method: "GET"
     })
       .then(players => players.json())
-      .then(players => {
-        let players_array = [];
-        for (let i = 0; i < players.length; i++) {
-          players_array.push(players[i][0]);
-        }
-        this.props.fetchingPlayers(players_array);
-      })
+      .then(players => this.props.fetchingPlayers(players))
       .then(
         fetch("http://127.0.0.1:8000/teams", {
           method: "GET"
         })
           .then(teams => teams.json())
-          .then(teams => {
-            let teams_array = [];
-            for (let i = 0; i < teams.length; i++) {
-              teams_array.push(teams[i][0]);
-            }
-            this.props.fetchingTeams(teams_array);
-          })
+          .then(teams => this.props.fetchingTeams(teams))
+      )
+      .then(
+        fetch(`http://127.0.0.1:8000/matches?recent=${0}`, {
+          method: "GET"
+        })
+          .then(recent_matches => recent_matches.json())
+          .then(recent_matches => this.props.fetchRecent(0, recent_matches))
       )
       .catch(function(error) {
         console.log("Request failure: ", error);
@@ -235,28 +228,43 @@ class Home extends Component {
           </Link>
         </div>
         <div className="container" style={styles.root}>
-          <GridList cellHeight={200} cols={1} style={styles.gridList}>
-            <Subheader style={styles.subheader}>Resultats recents</Subheader>
-            {matchesData.map(match => (
-              <GridTile
-                style={styles.gridTile}
-                key={match.id}
-                title={`${
-                  playersData.find(player => player.id === match.players[0])
-                    .name
-                } -  ${
-                  playersData.find(player => player.id === match.players[1])
-                    .name
-                }`}
-                subtitle={`${
-                  teamsData.find(team => team.id === match.teams[0]).name
-                } ${match.score[0]} - ${match.score[1]} ${
-                  teamsData.find(team => team.id === match.teams[1]).name
-                }`}
-                titleBackground="linear-gradient(to top, rgba(0, 51, 102, 1) 0%, rgba(34, 66, 124, 0.5) 80%, rgba(34, 66, 124, 0) 100%)"
-              />
-            ))}
-          </GridList>
+          {this.props.teams.length > 0 &&
+            this.props.players.length > 0 && (
+              <GridList cellHeight={200} cols={1} style={styles.gridList}>
+                <Subheader style={styles.subheader}>
+                  Resultats recents
+                </Subheader>
+                {this.props.displayRecent.map(
+                  match =>
+                    this.props.teams.length > 0 &&
+                    this.props.players.length > 0 && (
+                      <GridTile
+                        style={styles.gridTile}
+                        key={match.id}
+                        title={`${
+                          this.props.players.find(
+                            player => player.id === match.players[0]
+                          ).name
+                        } -  ${
+                          this.props.players.find(
+                            player => player.id === match.players[1]
+                          ).name
+                        }`}
+                        subtitle={`${
+                          this.props.teams.find(
+                            team => team.id === match.teams[0]
+                          ).name
+                        } ${match.score[0]} - ${match.score[1]} ${
+                          this.props.teams.find(
+                            team => team.id === match.teams[1]
+                          ).name
+                        }`}
+                        titleBackground="linear-gradient(to top, rgba(0, 51, 102, 1) 0%, rgba(34, 66, 124, 0.5) 80%, rgba(34, 66, 124, 0) 100%)"
+                      />
+                    )
+                )}
+              </GridList>
+            )}
           <Link to="/Results" style={{ color: "white", margin: "2vh" }}>
             Voir tout
           </Link>
